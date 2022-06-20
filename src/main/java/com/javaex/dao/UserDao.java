@@ -12,6 +12,16 @@ public class UserDao {
 	//필드
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//회원정보 가져오기(회원정보 수정)
+	public UserVo userSelect(UserVo authUser) {
+		System.out.println("UserDao->UserSelect()");
+		
+		UserVo userVo = sqlSession.selectOne("user.userSelect", authUser);
+
+		return userVo;
+	}
+	
 
 	//회원정보 가져오기(로그인)
 	public UserVo getUser(UserVo userVo) {
@@ -31,5 +41,10 @@ public class UserDao {
 		
 		return count;
 	}
+
+
+
+
+
 
 }

@@ -20,4 +20,12 @@
 			and password = #{password}
 		]]>
 	</select>
+	
+	<select id="userSelect" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select *
+			from users
+			where no = #{no}
+		]]>
+	</select>
 </mapper>

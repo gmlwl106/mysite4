@@ -32,4 +32,12 @@ public class UserService {
 		return authUser;
 	}
 
+	public UserVo modify(UserVo authUser) {
+		System.out.println("UserService->modify()");
+
+		UserVo userVo = userDao.userSelect(authUser);
+		
+		return userVo;
+	}
+
 }
