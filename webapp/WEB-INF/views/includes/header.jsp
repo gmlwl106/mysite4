@@ -18,7 +18,7 @@
 				<c:when test="${not empty authUser }">
 					<!-- 로그인 후 -->
 					<ul>
-						<li>${authUser.name } 님 안녕하세요^^</li>
+						<li>${authUser.name } 님 안녕하세요 คʕ•ﻌ•ʔค</li>
 						<li><a href="/mysite4/user/logout" class="btn_s">로그아웃</a></li>
 						<li><a href="/mysite4/user/modifyForm" class="btn_s">회원정보수정</a></li>
 					</ul>

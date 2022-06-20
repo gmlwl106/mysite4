@@ -32,12 +32,20 @@ public class UserService {
 		return authUser;
 	}
 
-	public UserVo modify(UserVo authUser) {
-		System.out.println("UserService->modify()");
+	public UserVo userSelect(UserVo authUser) {
+		System.out.println("UserService->userSelect()");
 
 		UserVo userVo = userDao.userSelect(authUser);
 		
 		return userVo;
+	}
+
+	public int modify(UserVo userVo) {
+		System.out.println("UserService->modify()");
+		
+		int count = userDao.userUpdate(userVo);
+		
+		return count;
 	}
 
 }

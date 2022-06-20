@@ -35,9 +35,18 @@ public class UserDao {
 	
 	//회원정보 저장(회원가입)
 	public int userInsert(UserVo userVo) {
-		System.out.println("UserDao->UserInsert()");
+		System.out.println("UserDao->userInsert()");
 		
 		int count = sqlSession.insert("user.insert", userVo);
+		
+		return count;
+	}
+
+
+	public int userUpdate(UserVo userVo) {
+		System.out.println("UserDao->userUpdate()"+userVo);
+		
+		int count = sqlSession.update("user.userUpdate", userVo);
 		
 		return count;
 	}

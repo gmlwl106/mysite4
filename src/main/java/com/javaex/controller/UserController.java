@@ -21,9 +21,13 @@ public class UserController {
 	
 	//회원정보 수정
 	@RequestMapping(value="/user/modify", method= {RequestMethod.GET, RequestMethod.POST})
-	public String modify(@ModelAttribute UserVo userVo) {
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController->modify()");
-		return "";
+		
+		int count = userService.modify(userVo);
+		session.setAttribute("authUser", userVo);
+		
+		return "redirect:/main";
 	}
 	
 	//회원정보 수정폼
@@ -32,7 +36,7 @@ public class UserController {
 		System.out.println("UserController->modifyForm()");
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		UserVo userVo = userService.modify(authUser);
+		UserVo userVo = userService.userSelect(authUser);
 		
 		model.addAttribute("userVo", userVo);
 

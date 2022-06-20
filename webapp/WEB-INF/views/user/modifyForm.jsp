@@ -50,6 +50,9 @@
 				<div id="user">
 					<div id="modifyForm">
 						<form action="./modify" method="get">
+							
+							<input type="hidden" name="no" value="${userVo.no }">
+							<input type="hidden" name="id" value="${userVo.id }">
 
 							<!-- 아이디 -->
 							<div class="form-group">
