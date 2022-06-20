@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +16,48 @@ public class UserController {
 	
 	//필드
 	@Autowired
-	UserService userService;
+	private UserService userService;
+	
+	//회원정보 수정
+	@RequestMapping(value="/user/modifyForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm() {
+		System.out.println("UserController->modifyForm()");
+		
+		
+		
+		return "";
+	}
+	
+	//로그아웃
+	@RequestMapping(value="/user/logout", method= {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("UserController->logout()");
+		
+		session.removeAttribute("authUser");
+		session.invalidate();
+		
+		return "redirect:/main";
+	}
+	
+	//로그인
+	@RequestMapping(value="/user/login", method= {RequestMethod.GET, RequestMethod.POST})
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController->login()");
+		
+		UserVo authUser = userService.login(userVo);
+
+		if(authUser != null) {
+			System.out.println("<<로그인 성공>>");
+			//세션에 저장
+			session.setAttribute("authUser", authUser);
+			return "redirect:/main";
+			
+		}
+		
+		System.out.println("<<로그인 실패>>");
+		return "redirect:/user/loginForm?result=fail";
+		
+	}
 
 	//로그인폼
 	@RequestMapping(value="/user/loginForm", method= {RequestMethod.GET, RequestMethod.POST})
@@ -30,7 +73,7 @@ public class UserController {
 		
 		userService.join(userVo);
 		
-		return "";
+		return "/user/joinOk";
 	}
 	
 	//회원가입폼

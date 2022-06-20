@@ -10,16 +10,26 @@ import com.javaex.vo.UserVo;
 public class UserService {
 	//필드
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	
 	//생성자
 	//메소드gs
 	
 	//메소드 일반
 
-	public void join(UserVo userVo) {
+	public int join(UserVo userVo) {
 		System.out.println("UserService->join()");
-		userDao.userInsert(userVo);
+		int count = userDao.userInsert(userVo);
+		
+		return count;
+	}
+
+	public UserVo login(UserVo userVo) {
+		System.out.println("UserService->login()");
+		
+		UserVo authUser = userDao.getUser(userVo);
+		
+		return authUser;
 	}
 
 }

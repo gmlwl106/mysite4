@@ -5,18 +5,26 @@
 			<h1>
 				<a href="/mysite4/main">MySite</a>
 			</h1>
+			
+			<c:choose>
+				<c:when test="${empty authUser }">
+					<!-- 로그인 전 -->
+					<ul>
+						<li><a href="/mysite4/user/loginForm" class="btn_s">로그인</a></li>
+						<li><a href="/mysite4/user/joinForm" class="btn_s">회원가입</a></li>
+					</ul>
+				</c:when>
+				
+				<c:when test="${not empty authUser }">
+					<!-- 로그인 후 -->
+					<ul>
+						<li>${authUser.name } 님 안녕하세요^^</li>
+						<li><a href="/mysite4/user/logout" class="btn_s">로그아웃</a></li>
+						<li><a href="" class="btn_s">회원정보수정</a></li>
+					</ul>
+				</c:when>
+			</c:choose>
 
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="/mysite4/user/loginForm" class="btn_s">로그인</a></li>
-				<li><a href="/mysite4/user/joinForm" class="btn_s">회원가입</a></li>
-			</ul>
 			
 		</div>
 		<!-- //header -->
