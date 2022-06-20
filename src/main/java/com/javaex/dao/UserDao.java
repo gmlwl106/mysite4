@@ -13,6 +13,15 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//회원정보 수정
+	public int userUpdate(UserVo userVo) {
+		System.out.println("UserDao->userUpdate()"+userVo);
+		
+		int count = sqlSession.update("user.userUpdate", userVo);
+		
+		return count;
+	}
+	
 	//회원정보 가져오기(회원정보 수정)
 	public UserVo userSelect(UserVo authUser) {
 		System.out.println("UserDao->UserSelect()");
@@ -41,19 +50,5 @@ public class UserDao {
 		
 		return count;
 	}
-
-
-	public int userUpdate(UserVo userVo) {
-		System.out.println("UserDao->userUpdate()"+userVo);
-		
-		int count = sqlSession.update("user.userUpdate", userVo);
-		
-		return count;
-	}
-
-
-
-
-
 
 }

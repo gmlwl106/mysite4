@@ -16,6 +16,22 @@ public class UserService {
 	//메소드gs
 	
 	//메소드 일반
+	
+	public int modify(UserVo userVo) {
+		System.out.println("UserService->modify()");
+		
+		int count = userDao.userUpdate(userVo);
+		
+		return count;
+	}
+	
+	public UserVo modifyForm(UserVo authUser) {
+		System.out.println("UserService->userSelect()");
+
+		UserVo userVo = userDao.userSelect(authUser);
+		
+		return userVo;
+	}
 
 	public int join(UserVo userVo) {
 		System.out.println("UserService->join()");
@@ -32,20 +48,5 @@ public class UserService {
 		return authUser;
 	}
 
-	public UserVo userSelect(UserVo authUser) {
-		System.out.println("UserService->userSelect()");
-
-		UserVo userVo = userDao.userSelect(authUser);
-		
-		return userVo;
-	}
-
-	public int modify(UserVo userVo) {
-		System.out.println("UserService->modify()");
-		
-		int count = userDao.userUpdate(userVo);
-		
-		return count;
-	}
 
 }

@@ -25,7 +25,10 @@ public class UserController {
 		System.out.println("UserController->modify()");
 		
 		int count = userService.modify(userVo);
-		session.setAttribute("authUser", userVo);
+		UserVo authUser = new UserVo();
+		authUser.setNo(userVo.getNo());
+		authUser.setName(userVo.getName());
+		session.setAttribute("authUser", authUser);
 		
 		return "redirect:/main";
 	}
@@ -36,7 +39,7 @@ public class UserController {
 		System.out.println("UserController->modifyForm()");
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		UserVo userVo = userService.userSelect(authUser);
+		UserVo userVo = userService.modifyForm(authUser);
 		
 		model.addAttribute("userVo", userVo);
 
