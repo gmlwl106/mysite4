@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BoardController {
 
 	//게시판 리스트 폼
-	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/board/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String listForm() {
 		System.out.println("BoardController->listForm()");
 		return "/board/list";

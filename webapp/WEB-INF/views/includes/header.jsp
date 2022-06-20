@@ -3,7 +3,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="./main">MySite</a>
+				<a href="/mysite4/main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -14,8 +14,8 @@
 			</ul>
 			-->	
 			<ul>
-				<li><a href="./loginForm" class="btn_s">로그인</a></li>
-				<li><a href="./joinForm" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite4/user/loginForm" class="btn_s">로그인</a></li>
+				<li><a href="/mysite4/user/joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 			
 		</div>

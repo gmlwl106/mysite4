@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GuestbookController {
 
 	//방명록 폼
-	@RequestMapping(value="/addList", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/gb/addList", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addListForm() {
 		System.out.println("GBController->addListForm");
 		return "/guestbook/addList";
