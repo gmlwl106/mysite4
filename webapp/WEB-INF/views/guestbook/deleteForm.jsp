@@ -63,7 +63,6 @@
 							</tr>
 						</table>
 						<input type='hidden' name="no" value="${no }">
-						<input type='hidden' name="" value="">
 					</form>
 					
 				</div>
