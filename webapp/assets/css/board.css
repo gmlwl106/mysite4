@@ -24,7 +24,7 @@
 #board #list table>thead>tr {
     border-top: 2px solid #808080; 
     border-bottom: 2px solid #808080;
-    background-color: #DDDDDD; 
+    background-color: #9bc9d6; 
     padding: 0px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 #board #list table>tbody>tr:hover { 
-	background-color: #6699ff; 
+	background-color: #9bc9d6; 
 }
 
 #board #list table>tbody>tr>td {
