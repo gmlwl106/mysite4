@@ -3,6 +3,7 @@
 
 <mapper namespace="user">
 	
+	<!-- 회원 추가 -->
 	<insert id="insert" parameterType="com.javaex.vo.UserVo">
 		<![CDATA[
 			insert into users
@@ -11,6 +12,7 @@
 		]]>
 	</insert>
 	
+	<!-- 회원 가져오기 (로그인) -->
 	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select no
@@ -21,6 +23,7 @@
 		]]>
 	</select>
 	
+	<!-- 회원 가져오기 (회원정보수정) -->
 	<select id="userSelect" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select *
@@ -29,6 +32,7 @@
 		]]>
 	</select>
 	
+	<!-- 회원 정보 수정 -->
 	<update id="userUpdate" parameterType="com.javaex.vo.UserVo">
 		<![CDATA[
 			update users

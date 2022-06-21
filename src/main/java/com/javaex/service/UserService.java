@@ -17,6 +17,7 @@ public class UserService {
 	
 	//메소드 일반
 	
+	//회원정보 수정
 	public int modify(UserVo userVo) {
 		System.out.println("UserService->modify()");
 		
@@ -25,6 +26,7 @@ public class UserService {
 		return count;
 	}
 	
+	//회원정보 수정폼 (회원 가져오기)
 	public UserVo modifyForm(UserVo authUser) {
 		System.out.println("UserService->userSelect()");
 
@@ -33,6 +35,7 @@ public class UserService {
 		return userVo;
 	}
 
+	//회원 가입
 	public int join(UserVo userVo) {
 		System.out.println("UserService->join()");
 		int count = userDao.userInsert(userVo);
@@ -40,6 +43,7 @@ public class UserService {
 		return count;
 	}
 
+	//로그인 (회원 가져오기)
 	public UserVo login(UserVo userVo) {
 		System.out.println("UserService->login()");
 		
