@@ -13,6 +13,13 @@ public class GuestbookService {
 	
 	@Autowired
 	GuestbookDao gbDao;
+	
+	//방명록 삭제
+	public int gbDelete(GuestbookVo gbVo) {
+		System.out.println("gbService->gbDelete()");
+		int count = gbDao.gbDelete(gbVo);
+		return count;
+	}
 
 	//방명록 추가
 	public int addList(GuestbookVo gbVo) {

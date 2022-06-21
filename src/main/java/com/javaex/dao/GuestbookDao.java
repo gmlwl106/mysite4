@@ -14,6 +14,13 @@ public class GuestbookDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//방명록 삭제
+	public int gbDelete(GuestbookVo gbVo) {
+		System.out.println("gbDao->gbDelete()");
+		int count = sqlSession.delete("gb.delete", gbVo);
+		return count;
+	}
+	
 	//방명록 추가
 	public int gbInsert(GuestbookVo gbVo) {
 		System.out.println("gbDao->gbInsert()");

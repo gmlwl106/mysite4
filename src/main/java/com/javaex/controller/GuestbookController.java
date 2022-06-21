@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,9 +21,21 @@ public class GuestbookController {
 	GuestbookService gbService;
 	
 	//방명록 삭제
-	public String deleteForm() {
+	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String gbDelete(@ModelAttribute GuestbookVo gbVo) {
+		System.out.println("GBController->gbDelete()");
 		
-		return "";
+		int count = gbService.gbDelete(gbVo);
+		
+		return "redirect:/gb/addList";
+	}
+	
+	//방명록 삭제폼
+	@RequestMapping(value="/deleteForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String deleteForm(@PathVariable int no) {
+		System.out.println("GBController->deleteForm()");
+		
+		return "/guestbook/deleteForm";
 	}
 
 	//방명록 추가

@@ -3,6 +3,15 @@
 
 <mapper namespace="gb">
 
+	<!-- 방명록 삭제 -->
+	<delete id="delete" parameterType="gbVo">
+		<![CDATA[
+			delete guestbook
+			where no = #{no}
+			and password = #{password}
+		]]>		
+	</delete>
+
 	<!-- 방명록 추가 -->
 	<insert id="insert" parameterType="gbVo">
 		<![CDATA[

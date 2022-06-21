@@ -15,34 +15,10 @@
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
-			</ul>
-			
-		</div>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		<!-- //nav -->
 
 		<div id="container" class="clearfix">
@@ -71,7 +47,7 @@
 				<!-- //content-head -->
 	
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="${pageContext.request.contextPath }/gb/delete" method="get">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -81,12 +57,12 @@
 							</colgroup>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pass"></td>
+								<td><input type="password" name="password"></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/guestbook2/gbc">[메인으로 돌아가기]</a></td>
+								<td><a href="${pageContext.request.contextPath }/gb/addList">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="" value="">
+						<input type='hidden' name="no" value="${no }">
 						<input type='hidden' name="" value="">
 					</form>
 					
@@ -98,9 +74,7 @@
 		</div>
 		<!-- //container  -->
 		
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>

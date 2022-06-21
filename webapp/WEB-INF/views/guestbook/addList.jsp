@@ -87,7 +87,7 @@
 								<td>${gbVo.no }</td>
 								<td>${gbVo.name }</td>
 								<td>${gbVo.regDate }</td>
-								<td><a href="">[삭제]</a></td>
+								<td><a href="./deleteForm/${gbVo.no }">[삭제]</a></td>
 							</tr>
 							<tr>
 								<td colspan=4 class="text-left">${gbVo.content }</td>
