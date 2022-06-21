@@ -14,6 +14,21 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	//글 수정
+	public int modify(BoardVo boardVo) {
+		System.out.println("BoardService->modify()");
+		boardVo.setContent(boardVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
+		return boardDao.boardUpdate(boardVo);
+	}
+	
+	//글 수정폼
+	public BoardVo modifyForm(int no) {
+		System.out.println("BoardService->modifyForm()");
+		BoardVo boardVo = boardDao.getBoard(no);
+		boardVo.setContent(boardVo.getContent().replace("<br>", "\r\n")); //줄바꿈
+		return boardVo;
+	}
+	
 	//글 삭제
 	public int delete(int no) {
 		System.out.println("BoardService->delete()");

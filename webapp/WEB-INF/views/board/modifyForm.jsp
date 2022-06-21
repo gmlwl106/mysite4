@@ -45,8 +45,11 @@
 				<!-- //content-head -->
 	
 				<div id="board">
-					<div id="read">
-						<form action="#" method="get">
+					<div id="modifyForm">
+						<form action="${pageContext.request.contextPath }/board/modify" method="get">
+							<!-- 글번호 -->
+							<input type="hidden" name="no" value="${boardVo.no }">
+							
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -67,24 +70,24 @@
 							
 							<!-- 제목 -->
 							<div class="form-group">
-								<span class="form-text">제 목</span>
-								<span class="form-value">${boardVo.title }</span>
+								<label class="form-text" for="txt-title">제목</label>
+								<input type="text" id="txt-title" name="title" value="${boardVo.title }">
 							</div>
 						
+							
+						
 							<!-- 내용 -->
-							<div id="txt-content">
-								<span class="form-value" >${boardVo.content }</span>
+							<div class="form-group">
+								<textarea id="txt-content" name="content" value="">${boardVo.content }</textarea>
 							</div>
 							
-							<c:if test="${boardVo.userNo eq authUser.no }">
-								<a id="btn_modify" href="${pageContext.request.contextPath }/board/modifyForm/${boardVo.no}">수정</a>
-							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath }/board/list">목록</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath }/board/list">취소</a>
+							<button id="btn_modify" type="submit" >수정</button>
 							
 						</form>
 						<!-- //form -->
 					</div>
-					<!-- //read -->
+					<!-- //modifyForm -->
 				</div>
 				<!-- //board -->
 			</div>
@@ -92,6 +95,7 @@
 
 		</div>
 		<!-- //container  -->
+
 
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->

@@ -21,6 +21,27 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	//글 수정
+	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute BoardVo boardVo) {
+		System.out.println("BoardController->modify()");
+		
+		boardService.modify(boardVo);
+		
+		return "redirect:/board/list";
+	}
+	
+	//글 수정폼
+	@RequestMapping(value="/modifyForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(Model model, @PathVariable int no) {
+		System.out.println("BoardController->modifyForm()");
+		
+		BoardVo boardVo = boardService.modifyForm(no);
+		model.addAttribute("boardVo", boardVo);
+		
+		return "/board/modifyForm";
+	}
+	
 	//글 삭제
 	@RequestMapping(value="/delete/{no}", method= {RequestMethod.GET, RequestMethod.POST})
 	public String delete(@PathVariable int no) {

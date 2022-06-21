@@ -3,6 +3,16 @@
 
 <mapper namespace="board">
 
+	<!-- 글 수정 -->
+	<update id="update" parameterType="boardVo">
+		<![CDATA[
+			update board
+			set title = #{title}
+				,content = #{content}
+			where no = #{no}
+		]]>
+	</update>
+
 	<!-- 글 삭제 -->
 	<delete id="delete" parameterType="int">
 		<![CDATA[

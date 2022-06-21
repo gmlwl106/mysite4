@@ -14,6 +14,13 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//글 수정
+	public int boardUpdate(BoardVo boardVo) {
+		System.out.println("BoardDao->boardUpdate()");
+		
+		return sqlSession.update("board.update", boardVo);
+	}
+	
 	//글 삭제
 	public int boardDelete(int no) {
 		System.out.println("BoardDao->boardDelete()");
@@ -28,7 +35,7 @@ public class BoardDao {
 		return sqlSession.insert("board.insert", boardVo);
 	}
 	
-	//글 읽기
+	//글 가져오기
 	public BoardVo getBoard(int no) {
 		System.out.println("BoardDao->getBoard()");
 		
@@ -42,7 +49,7 @@ public class BoardDao {
 		return sqlSession.update("board.hitUpdate", no);
 	}
 
-	//게시판 리스트
+	//게시판 리스트 가져오기
 	public List<BoardVo> getList() {
 		System.out.println("BoardDao->getList()");
 		
