@@ -4,7 +4,7 @@
 <mapper namespace="user">
 	
 	<!-- 회원 추가 -->
-	<insert id="insert" parameterType="com.javaex.vo.UserVo">
+	<insert id="insert" parameterType="userVo">
 		<![CDATA[
 			insert into users
 			values(SEQ_USERS_NO.nextval, #{id}, #{password}, #{name}, #{gender})
@@ -13,7 +13,7 @@
 	</insert>
 	
 	<!-- 회원 가져오기 (로그인) -->
-	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+	<select id="getUser" parameterType="userVo" resultType="userVo">
 		<![CDATA[
 			select no
 					,name
@@ -24,7 +24,7 @@
 	</select>
 	
 	<!-- 회원 가져오기 (회원정보수정) -->
-	<select id="modifyGetUser" parameterType="int" resultType="com.javaex.vo.UserVo">
+	<select id="modifyGetUser" parameterType="int" resultType="userVo">
 		<![CDATA[
 			select *
 			from users
@@ -33,7 +33,7 @@
 	</select>
 	
 	<!-- 회원 정보 수정 -->
-	<update id="update" parameterType="com.javaex.vo.UserVo">
+	<update id="update" parameterType="userVo">
 		<![CDATA[
 			update users
 			set password = #{password}
