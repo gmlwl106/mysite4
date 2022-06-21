@@ -14,9 +14,17 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	//글 쓰기
+	public int write(BoardVo boardVo) {
+		System.out.println("BoardService->write()");
+		boardVo.setContent(boardVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
+		return boardDao.boardInsert(boardVo);
+	}
+	
 	//글 읽기
 	public BoardVo read(int no) {
 		System.out.println("BoardService->getList()");
+		boardDao.hitUpdate(no);
 		return boardDao.getBoard(no);
 	}
 

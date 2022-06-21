@@ -14,11 +14,25 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//글 쓰기
+	public int boardInsert(BoardVo boardVo) {
+		System.out.println("BoardDao->boardInsert()");
+		
+		return sqlSession.insert("board.insert", boardVo);
+	}
+	
 	//글 읽기
 	public BoardVo getBoard(int no) {
 		System.out.println("BoardDao->getBoard()");
 		
 		return sqlSession.selectOne("board.getBoard", no);
+	}
+	
+	//조회수 올리기
+	public int hitUpdate(int no) {
+		System.out.println("BoardDao->hitUpdate()");
+		
+		return sqlSession.update("board.hitUpdate", no);
 	}
 
 	//게시판 리스트

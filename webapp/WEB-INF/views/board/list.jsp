@@ -100,7 +100,7 @@
 							<div class="clear"></div>
 						</div>
 						<c:if test="${not empty authUser }">
-							<a id="btn_write" href="">글쓰기</a>
+							<a id="btn_write" href="./writeForm">글쓰기</a>
 						</c:if>
 					
 					</div>

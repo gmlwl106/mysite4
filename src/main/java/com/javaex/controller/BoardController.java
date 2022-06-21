@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +22,20 @@ public class BoardController {
 	BoardService boardService;
 	
 	//글 쓰기
-	public String writeForm() {
+	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
+	public String write(@ModelAttribute BoardVo boardVo) {
+		System.out.println("BoardController->write()");
 		
-		return "";
+		boardService.write(boardVo);
+		
+		return "redirect:/board/list";
+	}
+	
+	//글 쓰기 폼
+	@RequestMapping(value="/writeForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		System.out.println("BoardController->writeForm()");
+		return "/board/writeForm";
 	}
 	
 	//글 읽기

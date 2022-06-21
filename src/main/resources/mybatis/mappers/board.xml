@@ -3,6 +3,14 @@
 
 <mapper namespace="board">
 
+	<!-- 글 쓰기 -->
+	<insert id="insert" parameterType="boardVo">
+		<![CDATA[
+			insert into board
+			values(SEQ_BOARD_NO.nextval, #{title}, #{content}, 0, sysdate, #{userNo})
+		]]>
+	</insert>
+
 	<!-- 글 읽기 -->
 	<select id="getBoard" parameterType="int" resultType="boardVo">
 		<![CDATA[
@@ -18,6 +26,15 @@
 			and b.no = #{no}
 		]]>
 	</select>
+	
+	<!-- 조회수 올리기 -->
+	<update id="hitUpdate" parameterType="int">
+		<![CDATA[
+			update board
+			set hit = hit + 1
+			where no = #{no}
+		]]>
+	</update>
 	
 	<!-- 게시판 리스트 -->
 	<select id="getList" resultType="boardVo">
