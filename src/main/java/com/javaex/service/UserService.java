@@ -27,10 +27,10 @@ public class UserService {
 	}
 	
 	//회원정보 수정폼 (회원 가져오기)
-	public UserVo modifyForm(UserVo authUser) {
-		System.out.println("UserService->userSelect()");
+	public UserVo modifyForm(int no) {
+		System.out.println("UserService->modifyForm()");
 
-		UserVo userVo = userDao.userSelect(authUser);
+		UserVo userVo = userDao.modifyGetUser(no);
 		
 		return userVo;
 	}

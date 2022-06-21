@@ -17,16 +17,16 @@ public class UserDao {
 	public int userUpdate(UserVo userVo) {
 		System.out.println("UserDao->userUpdate()"+userVo);
 		
-		int count = sqlSession.update("user.userUpdate", userVo);
+		int count = sqlSession.update("user.update", userVo);
 		
 		return count;
 	}
 	
 	//회원정보 가져오기(회원정보 수정)
-	public UserVo userSelect(UserVo authUser) {
-		System.out.println("UserDao->UserSelect()");
+	public UserVo modifyGetUser(int no) {
+		System.out.println("UserDao->modifyGetUser()");
 		
-		UserVo userVo = sqlSession.selectOne("user.userSelect", authUser);
+		UserVo userVo = sqlSession.selectOne("user.modifyGetUser", no);
 
 		return userVo;
 	}

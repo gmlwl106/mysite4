@@ -40,7 +40,7 @@ public class UserController {
 		System.out.println("UserController->modifyForm()");
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		UserVo userVo = userService.modifyForm(authUser);
+		UserVo userVo = userService.modifyForm(authUser.getNo());
 		
 		model.addAttribute("userVo", userVo);
 
