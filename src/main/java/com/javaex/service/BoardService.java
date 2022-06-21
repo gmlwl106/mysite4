@@ -13,6 +13,12 @@ public class BoardService {
 	
 	@Autowired
 	BoardDao boardDao;
+	
+	//글 읽기
+	public BoardVo read(int no) {
+		System.out.println("BoardService->getList()");
+		return boardDao.getBoard(no);
+	}
 
 	//게시판 리스트
 	public List<BoardVo> getList() {

@@ -20,11 +20,21 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	//글 쓰기
+	public String writeForm() {
+		
+		return "";
+	}
+	
 	//글 읽기
 	@RequestMapping(value="/read/{no}", method= {RequestMethod.GET, RequestMethod.POST})
-	public String read(@PathVariable int no) {
+	public String read(Model model, @PathVariable int no) {
 		System.out.println("BoardController->read()");
-		return "";
+		
+		BoardVo boardVo = boardService.read(no);
+		model.addAttribute("boardVo", boardVo);
+		
+		return "/board/read";
 	}
 
 	//게시판 리스트 폼
