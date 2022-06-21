@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gb">
+
+	<!-- 방명록 추가 -->
+	<insert id="insert" parameterType="gbVo">
+		<![CDATA[
+			insert into guestbook
+			values(SEQ_GUESTBOOK_NO.nextval, #{name}, #{password}, #{content}, sysdate)
+		]]>
+	</insert>
+
+	<!-- 방명록 출력 -->
+	<select id="select" resultType="gbVo">
+		<![CDATA[
+			select  no
+			        ,name
+			        ,password
+			        ,content
+			        ,to_char(reg_date, 'YYYY-MM-DD HH:MI:SS') regDate
+			from guestbook
+			order by no desc
+		]]>
+	</select>
+	
+
+</mapper>
