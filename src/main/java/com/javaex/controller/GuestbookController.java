@@ -23,7 +23,7 @@ public class GuestbookController {
 	//방명록 삭제
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String gbDelete(@ModelAttribute GuestbookVo gbVo) {
-		System.out.println("GBController->gbDelete()");
+		System.out.println("gbController->gbDelete()");
 		
 		int count = gbService.gbDelete(gbVo);
 		
@@ -33,7 +33,7 @@ public class GuestbookController {
 	//방명록 삭제폼
 	@RequestMapping(value="/deleteForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
 	public String deleteForm(@PathVariable int no) {
-		System.out.println("GBController->deleteForm()");
+		System.out.println("gbController->deleteForm()");
 		
 		return "/guestbook/deleteForm";
 	}
@@ -41,7 +41,7 @@ public class GuestbookController {
 	//방명록 추가
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addList(@ModelAttribute GuestbookVo gbVo) {
-		System.out.println("GBController->addList()");
+		System.out.println("gbController->addList()");
 		
 		int count = gbService.addList(gbVo);
 		
@@ -51,7 +51,7 @@ public class GuestbookController {
 	//방명록 폼
 	@RequestMapping(value="/addList", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addListForm(Model model) {
-		System.out.println("GBController->addListForm()");
+		System.out.println("gbController->addListForm()");
 		
 		List<GuestbookVo> gbList = gbService.addListForm();
 		model.addAttribute("gbList", gbList);
