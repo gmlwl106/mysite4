@@ -73,7 +73,7 @@
 									<td>${boardVo.regDate }</td>
 									
 									<c:if test="${authUser.no eq boardVo.userNo }">
-										<td><a href="">[삭제]</a></td>
+										<td><a href="./delete/${boardVo.no }">[삭제]</a></td>
 									</c:if>
 								</tr>
 							</c:forEach>

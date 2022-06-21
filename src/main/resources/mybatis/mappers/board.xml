@@ -3,6 +3,14 @@
 
 <mapper namespace="board">
 
+	<!-- 글 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete board
+			where no = #{no}
+		]]>
+	</delete>
+
 	<!-- 글 쓰기 -->
 	<insert id="insert" parameterType="boardVo">
 		<![CDATA[

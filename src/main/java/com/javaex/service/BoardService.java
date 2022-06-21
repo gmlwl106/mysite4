@@ -14,6 +14,12 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	//글 삭제
+	public int delete(int no) {
+		System.out.println("BoardService->delete()");
+		return boardDao.boardDelete(no);
+	}
+	
 	//글 쓰기
 	public int write(BoardVo boardVo) {
 		System.out.println("BoardService->write()");

@@ -14,6 +14,13 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//글 삭제
+	public int boardDelete(int no) {
+		System.out.println("BoardDao->boardDelete()");
+		
+		return sqlSession.delete("board.delete", no);
+	}
+	
 	//글 쓰기
 	public int boardInsert(BoardVo boardVo) {
 		System.out.println("BoardDao->boardInsert()");

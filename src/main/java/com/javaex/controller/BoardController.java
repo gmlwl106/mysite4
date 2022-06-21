@@ -21,6 +21,16 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	//글 삭제
+	@RequestMapping(value="/delete/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String delete(@PathVariable int no) {
+		System.out.println("BoardController->delete()");
+		
+		boardService.delete(no);
+		
+		return "redirect:/board/list";
+	}
+	
 	//글 쓰기
 	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute BoardVo boardVo) {
