@@ -53,7 +53,7 @@ public class GuestbookController {
 	public String addListForm(Model model) {
 		System.out.println("gbController->addListForm()");
 		
-		List<GuestbookVo> gbList = gbService.addListForm();
+		List<GuestbookVo> gbList = gbService.getList();
 		model.addAttribute("gbList", gbList);
 		
 		return "/guestbook/addList";

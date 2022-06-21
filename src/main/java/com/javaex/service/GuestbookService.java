@@ -29,8 +29,8 @@ public class GuestbookService {
 	}
 	
 	//방명록 폼
-	public List<GuestbookVo> addListForm() {
-		System.out.println("gbService->addListForm()");
+	public List<GuestbookVo> getList() {
+		System.out.println("gbService->getList()");
 		List<GuestbookVo> gbList = gbDao.gbSelect();
 		return gbList;
 	}
