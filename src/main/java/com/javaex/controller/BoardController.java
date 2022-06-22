@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -19,6 +20,17 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
+	
+	//게시판 리스트 검색
+	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
+	public String search(Model model, @RequestParam String keyword) {
+		System.out.println("BoardController->search()");
+		
+		List<BoardVo> boardList = boardService.search(keyword);
+		model.addAttribute("boardList", boardList);
+		
+		return "/board/list";
+	}
 	
 	//글 수정
 	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})

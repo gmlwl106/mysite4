@@ -14,6 +14,12 @@ public class BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	//글 검색
+	public List<BoardVo> getList(String keyword) {
+		//System.out.println("BoardDao->getList()");
+		return sqlSession.selectList("board.searchList", keyword);
+	}
+	
 	//글 수정
 	public int boardUpdate(BoardVo boardVo) {
 		//System.out.println("BoardDao->boardUpdate()");

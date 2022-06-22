@@ -14,6 +14,12 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	//글 검색
+	public List<BoardVo> search(String keyword) {
+		//System.out.println("BoardService->search()");
+		return boardDao.getList(keyword);
+	}
+	
 	//글 수정
 	public int modify(BoardVo boardVo) {
 		//System.out.println("BoardService->modify()");
