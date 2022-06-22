@@ -23,6 +23,7 @@ public class GuestbookService {
 	//방명록 추가
 	public int addList(GuestbookVo gbVo) {
 		//System.out.println("gbService->addListForm()");
+		gbVo.setContent(gbVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
 		return gbDao.gbInsert(gbVo);
 	}
 	
