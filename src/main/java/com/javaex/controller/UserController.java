@@ -44,7 +44,7 @@ public class UserController {
 		
 		model.addAttribute("userVo", userVo);
 
-		return "/user/modifyForm";
+		return "user/modifyForm";
 	}
 	
 	//로그아웃
@@ -90,13 +90,13 @@ public class UserController {
 		System.out.println("UserController->join()");
 		
 		userService.join(userVo);
-		return "/user/joinOk";
+		return "user/joinOk";
 	}
 	
 	//회원가입폼
 	@RequestMapping(value="/joinForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
 		System.out.println("UserController->joinForm()");
-		return "/user/joinForm";
+		return "user/joinForm";
 	}
 }

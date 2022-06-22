@@ -35,7 +35,7 @@ public class GuestbookController {
 	public String deleteForm(@PathVariable int no) {
 		System.out.println("gbController->deleteForm()");
 		
-		return "/guestbook/deleteForm";
+		return "guestbook/deleteForm";
 	}
 
 	//방명록 추가
@@ -56,6 +56,6 @@ public class GuestbookController {
 		List<GuestbookVo> gbList = gbService.getList();
 		model.addAttribute("gbList", gbList);
 		
-		return "/guestbook/addList";
+		return "guestbook/addList";
 	}
 }

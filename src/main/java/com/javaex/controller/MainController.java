@@ -17,6 +17,6 @@ public class MainController {
 	@RequestMapping(value="/main", method= {RequestMethod.GET, RequestMethod.POST})
 	public String main() {
 		System.out.println("MainController->main()");
-		return "/main/index";
+		return "main/index";
 	}
 }

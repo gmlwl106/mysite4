@@ -40,7 +40,7 @@ public class BoardController {
 		BoardVo boardVo = boardService.modifyForm(no);
 		model.addAttribute("boardVo", boardVo);
 		
-		return "/board/modifyForm";
+		return "board/modifyForm";
 	}
 	
 	//글 삭제
@@ -67,7 +67,7 @@ public class BoardController {
 	@RequestMapping(value="/writeForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
 		System.out.println("BoardController->writeForm()");
-		return "/board/writeForm";
+		return "board/writeForm";
 	}
 	
 	//글 읽기
@@ -78,7 +78,7 @@ public class BoardController {
 		BoardVo boardVo = boardService.read(no);
 		model.addAttribute("boardVo", boardVo);
 		
-		return "/board/read";
+		return "board/read";
 	}
 	
 	//게시판 리스트 검색
@@ -89,7 +89,7 @@ public class BoardController {
 		List<BoardVo> boardList = boardService.getList(keyword);
 		model.addAttribute("boardList", boardList);
 		
-		return "/board/list";
+		return "board/list";
 	}
 
 	//게시판 리스트 폼
@@ -101,6 +101,6 @@ public class BoardController {
 		List<BoardVo> boardList = boardService.getList(keyword);
 		model.addAttribute("boardList", boardList);
 		
-		return "/board/list";
+		return "board/list";
 	}
 }
