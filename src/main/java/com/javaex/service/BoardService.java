@@ -14,11 +14,6 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
-	//글 검색
-	public List<BoardVo> search(String keyword) {
-		//System.out.println("BoardService->search()");
-		return boardDao.getList(keyword);
-	}
 	
 	//글 수정
 	public int modify(BoardVo boardVo) {
@@ -55,9 +50,9 @@ public class BoardService {
 		return boardDao.getBoard(no);
 	}
 
-	//게시판 리스트
-	public List<BoardVo> getList() {
+	//게시판 리스트 (+검색)
+	public List<BoardVo> getList(String keyword) {
 		//System.out.println("BoardService->getList()");
-		return boardDao.getList();
+		return boardDao.getList(keyword);
 	}
 }

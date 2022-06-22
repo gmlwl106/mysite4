@@ -13,12 +13,7 @@ public class BoardDao {
 	
 	@Autowired
 	SqlSession sqlSession;
-	
-	//글 검색
-	public List<BoardVo> getList(String keyword) {
-		//System.out.println("BoardDao->getList()");
-		return sqlSession.selectList("board.searchList", keyword);
-	}
+
 	
 	//글 수정
 	public int boardUpdate(BoardVo boardVo) {
@@ -51,9 +46,9 @@ public class BoardDao {
 		return sqlSession.update("board.hitUpdate", no);
 	}
 
-	//게시판 리스트 가져오기
-	public List<BoardVo> getList() {
+	//게시판 리스트 가져오기 (+검색)
+	public List<BoardVo> getList(String keyword) {
 		//System.out.println("BoardDao->getList()");
-		return sqlSession.selectList("board.getList");
+		return sqlSession.selectList("board.getList", keyword);
 	}
 }

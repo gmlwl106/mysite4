@@ -3,21 +3,6 @@
 
 <mapper namespace="board">
 
-	<!-- 게시판 리스트 가져오기 (검색) -->
-	<select id="searchList" parameterType="String" resultType="boardVo">
-		<![CDATA[
-			select b.no
-			        ,b.title
-			        ,b.hit
-			        ,to_char(b.reg_date,'YYYY-MM-DD') regDate
-			        ,b.user_no userNo
-			        ,u.name
-			from board b, users u
-			where b.user_no = u.no
-			and b.title like '%'||#{keyword}||'%'
-			order by b.no desc
-		]]>
-	</select>
 
 	<!-- 글 수정 -->
 	<update id="update" parameterType="boardVo">
@@ -71,7 +56,7 @@
 	</update>
 	
 	<!-- 게시판 리스트 가져오기 -->
-	<select id="getList" resultType="boardVo">
+	<select id="getList" parameterType="String" resultType="boardVo">
 		<![CDATA[
 			select b.no
 			        ,b.title
@@ -81,6 +66,7 @@
 			        ,u.name
 			from board b, users u
 			where b.user_no = u.no
+			and b.title like '%'||#{keyword}||'%'
 			order by b.no desc
 		]]>
 	</select>

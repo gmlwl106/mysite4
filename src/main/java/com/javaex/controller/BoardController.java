@@ -21,17 +21,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	//게시판 리스트 검색
-	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
-	public String search(Model model, @RequestParam String keyword) {
-		System.out.println("BoardController->search()");
-		
-		List<BoardVo> boardList = boardService.search(keyword);
-		model.addAttribute("boardList", boardList);
-		
-		return "/board/list";
-	}
-	
+
 	//글 수정
 	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute BoardVo boardVo) {
@@ -90,13 +80,25 @@ public class BoardController {
 		
 		return "/board/read";
 	}
+	
+	//게시판 리스트 검색
+	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
+	public String search(Model model, @RequestParam String keyword) {
+		System.out.println("BoardController->search()");
+		
+		List<BoardVo> boardList = boardService.getList(keyword);
+		model.addAttribute("boardList", boardList);
+		
+		return "/board/list";
+	}
 
 	//게시판 리스트 폼
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String listForm(Model model) {
 		System.out.println("BoardController->listForm()");
 		
-		List<BoardVo> boardList = boardService.getList();
+		String keyword = "";
+		List<BoardVo> boardList = boardService.getList(keyword);
 		model.addAttribute("boardList", boardList);
 		
 		return "/board/list";
