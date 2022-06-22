@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -83,7 +82,7 @@ public class BoardController {
 	
 	//게시판 리스트 검색
 	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
-	public String search(Model model, @RequestParam String keyword) {
+	public String search(Model model, String keyword) {
 		System.out.println("BoardController->search()");
 		
 		List<BoardVo> boardList = boardService.getList(keyword);
