@@ -70,7 +70,6 @@ public class UserController {
 			//세션에 저장
 			session.setAttribute("authUser", authUser);
 			return "redirect:/main";
-			
 		}
 		
 		System.out.println("<<로그인 실패>>");
@@ -91,7 +90,6 @@ public class UserController {
 		System.out.println("UserController->join()");
 		
 		userService.join(userVo);
-		
 		return "/user/joinOk";
 	}
 	

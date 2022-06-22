@@ -16,29 +16,25 @@ public class BoardDao {
 	
 	//글 수정
 	public int boardUpdate(BoardVo boardVo) {
-		System.out.println("BoardDao->boardUpdate()");
-		
+		//System.out.println("BoardDao->boardUpdate()");
 		return sqlSession.update("board.update", boardVo);
 	}
 	
 	//글 삭제
 	public int boardDelete(int no) {
-		System.out.println("BoardDao->boardDelete()");
-		
+		//System.out.println("BoardDao->boardDelete()");
 		return sqlSession.delete("board.delete", no);
 	}
 	
 	//글 쓰기
 	public int boardInsert(BoardVo boardVo) {
-		System.out.println("BoardDao->boardInsert()");
-		
+		//System.out.println("BoardDao->boardInsert()");
 		return sqlSession.insert("board.insert", boardVo);
 	}
 	
 	//글 가져오기
 	public BoardVo getBoard(int no) {
-		System.out.println("BoardDao->getBoard()");
-		
+		//System.out.println("BoardDao->getBoard()");
 		return sqlSession.selectOne("board.getBoard", no);
 	}
 	
@@ -51,8 +47,7 @@ public class BoardDao {
 
 	//게시판 리스트 가져오기
 	public List<BoardVo> getList() {
-		System.out.println("BoardDao->getList()");
-		
+		//System.out.println("BoardDao->getList()");
 		return sqlSession.selectList("board.getList");
 	}
 }

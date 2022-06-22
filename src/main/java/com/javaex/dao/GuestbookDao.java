@@ -16,23 +16,20 @@ public class GuestbookDao {
 	
 	//방명록 삭제
 	public int gbDelete(GuestbookVo gbVo) {
-		System.out.println("gbDao->gbDelete()");
-		int count = sqlSession.delete("gb.delete", gbVo);
-		return count;
+		//System.out.println("gbDao->gbDelete()");
+		return sqlSession.delete("gb.delete", gbVo);
 	}
 	
 	//방명록 추가
 	public int gbInsert(GuestbookVo gbVo) {
-		System.out.println("gbDao->gbInsert()");
-		int count = sqlSession.insert("gb.insert", gbVo);
-		return count;
+		//System.out.println("gbDao->gbInsert()");
+		return sqlSession.insert("gb.insert", gbVo);
 	}
 
 	//방명록 출력
 	public List<GuestbookVo> gbSelect() {
-		System.out.println("gbDao->gbSelect()");
-		List<GuestbookVo> gbList = sqlSession.selectList("gb.select");
-		return gbList;
+		//System.out.println("gbDao->gbSelect()");
+		return sqlSession.selectList("gb.select");
 	}
 
 

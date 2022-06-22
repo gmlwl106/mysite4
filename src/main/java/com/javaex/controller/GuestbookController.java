@@ -25,7 +25,7 @@ public class GuestbookController {
 	public String gbDelete(@ModelAttribute GuestbookVo gbVo) {
 		System.out.println("gbController->gbDelete()");
 		
-		int count = gbService.gbDelete(gbVo);
+		gbService.gbDelete(gbVo);
 		
 		return "redirect:/gb/addList";
 	}
@@ -43,7 +43,7 @@ public class GuestbookController {
 	public String addList(@ModelAttribute GuestbookVo gbVo) {
 		System.out.println("gbController->addList()");
 		
-		int count = gbService.addList(gbVo);
+		gbService.addList(gbVo);
 		
 		return "redirect:/gb/addList";
 	}

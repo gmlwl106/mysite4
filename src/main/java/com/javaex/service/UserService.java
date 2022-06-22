@@ -19,37 +19,26 @@ public class UserService {
 	
 	//회원정보 수정
 	public int modify(UserVo userVo) {
-		System.out.println("UserService->modify()");
-		
-		int count = userDao.userUpdate(userVo);
-		
-		return count;
+		//System.out.println("UserService->modify()");
+		return userDao.userUpdate(userVo);
 	}
 	
 	//회원정보 수정폼 (회원 가져오기)
 	public UserVo modifyForm(int no) {
-		System.out.println("UserService->modifyForm()");
-
-		UserVo userVo = userDao.modifyGetUser(no);
-		
-		return userVo;
+		//System.out.println("UserService->modifyForm()");
+		return userDao.modifyGetUser(no);
 	}
 
 	//회원 가입
 	public int join(UserVo userVo) {
-		System.out.println("UserService->join()");
-		int count = userDao.userInsert(userVo);
-		
-		return count;
+		//System.out.println("UserService->join()");
+		return userDao.userInsert(userVo);
 	}
 
 	//로그인 (회원 가져오기)
 	public UserVo login(UserVo userVo) {
-		System.out.println("UserService->login()");
-		
-		UserVo authUser = userDao.getUser(userVo);
-		
-		return authUser;
+		//System.out.println("UserService->login()");
+		return userDao.getUser(userVo);
 	}
 
 

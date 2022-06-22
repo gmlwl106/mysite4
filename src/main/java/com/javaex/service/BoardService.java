@@ -16,14 +16,14 @@ public class BoardService {
 	
 	//글 수정
 	public int modify(BoardVo boardVo) {
-		System.out.println("BoardService->modify()");
+		//System.out.println("BoardService->modify()");
 		boardVo.setContent(boardVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
 		return boardDao.boardUpdate(boardVo);
 	}
 	
 	//글 수정폼
 	public BoardVo modifyForm(int no) {
-		System.out.println("BoardService->modifyForm()");
+		//System.out.println("BoardService->modifyForm()");
 		BoardVo boardVo = boardDao.getBoard(no);
 		boardVo.setContent(boardVo.getContent().replace("<br>", "\r\n")); //줄바꿈
 		return boardVo;
@@ -31,28 +31,27 @@ public class BoardService {
 	
 	//글 삭제
 	public int delete(int no) {
-		System.out.println("BoardService->delete()");
+		//System.out.println("BoardService->delete()");
 		return boardDao.boardDelete(no);
 	}
 	
 	//글 쓰기
 	public int write(BoardVo boardVo) {
-		System.out.println("BoardService->write()");
+		//System.out.println("BoardService->write()");
 		boardVo.setContent(boardVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
 		return boardDao.boardInsert(boardVo);
 	}
 	
 	//글 읽기
 	public BoardVo read(int no) {
-		System.out.println("BoardService->getList()");
+		//System.out.println("BoardService->getList()");
 		boardDao.hitUpdate(no);
 		return boardDao.getBoard(no);
 	}
 
 	//게시판 리스트
 	public List<BoardVo> getList() {
-		System.out.println("BoardService->getList()");
-		
+		//System.out.println("BoardService->getList()");
 		return boardDao.getList();
 	}
 }

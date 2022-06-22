@@ -38,7 +38,7 @@
 }
 
 #board #list table>tbody>tr:hover { 
-	background-color: #9bc9d6; 
+	background-color: rgb(204, 227, 234); 
 }
 
 #board #list table>tbody>tr>td {
