@@ -80,7 +80,21 @@ public class BoardController {
 		
 		return "board/read";
 	}
+
+	//게시판 리스트 폼 (+검색)
+	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
+	public String listForm(Model model,
+			@RequestParam(value="keyword", required=false, defaultValue="") String keyword) {
+		//keyword 디폴트 값을 dispatcherservlet이 설정
+		System.out.println("BoardController->listForm()");
+		
+		List<BoardVo> boardList = boardService.getList(keyword);
+		model.addAttribute("boardList", boardList);
+		
+		return "board/list";
+	}
 	
+	/*
 	//게시판 리스트 검색
 	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
 	public String search(Model model, @RequestParam("keyword") String keyword) {
@@ -91,16 +105,5 @@ public class BoardController {
 		
 		return "board/list";
 	}
-
-	//게시판 리스트 폼
-	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String listForm(Model model) {
-		System.out.println("BoardController->listForm()");
-		
-		String keyword = "";
-		List<BoardVo> boardList = boardService.getList(keyword);
-		model.addAttribute("boardList", boardList);
-		
-		return "board/list";
-	}
+	*/
 }

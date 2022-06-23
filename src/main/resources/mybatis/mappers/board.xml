@@ -3,7 +3,6 @@
 
 <mapper namespace="board">
 
-
 	<!-- 글 수정 -->
 	<update id="update" parameterType="boardVo">
 		<![CDATA[
@@ -66,7 +65,11 @@
 			        ,u.name
 			from board b, users u
 			where b.user_no = u.no
+		]]>
+		<if test="value != null and value != ''">
 			and b.title like '%'||#{keyword}||'%'
+		</if>
+		<![CDATA[
 			order by b.no desc
 		]]>
 	</select>
