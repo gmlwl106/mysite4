@@ -31,6 +31,12 @@ public class GuestbookDao {
 		//System.out.println("gbDao->gbSelect()");
 		return sqlSession.selectList("gb.select");
 	}
+	
+	//방명록 1개 데이터 가져오기 (ajax)
+	public GuestbookVo getGuest(int no) {
+		System.out.println("gbDao->getGuest()");
+		return sqlSession.selectOne("gb.getGuest", no);
+	}
 
 
 }
