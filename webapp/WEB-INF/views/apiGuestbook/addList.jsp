@@ -209,7 +209,7 @@ $("#btnModalDel").on("click", function() {
 			if(result == "success") {
 				$("#t"+no).remove();
 			} else {
-				alert("비밀번호를 확인하세요.");
+				alert("비밀번호가 틀렸습니다.");
 			}
 			
 			$("#delModal").modal("hide");
