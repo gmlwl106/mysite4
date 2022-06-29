@@ -31,6 +31,7 @@ public class GuestbookService {
 	public GuestbookVo addListAjax(GuestbookVo gbVo) {
 		//System.out.println("gbService->addListForm()");
 		gbVo.setContent(gbVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
+		System.out.println(gbVo);
 		int count = gbDao.gbInsert(gbVo);
 		//selectKey에서 no를 가져옴
 		int no = gbVo.getNo();

@@ -9,11 +9,14 @@
 <title>Insert title here</title>
 
 <!-- css -->
+<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
+
 </head>
 
 <body>
@@ -75,6 +78,8 @@
 						
 					<!-- </form>	 -->
 					
+					<button id="btnTest" class="btn btn-primary" type="button">모달창</button>
+					
 					<div id="listArea">
 					 <!-- guestbookList 출력되는 부분 -->
 					</div>
@@ -92,10 +97,32 @@
 	</div>
 	<!-- //wrap -->
 
+<!-- 삭제 모달창 -->
+<div id="delModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">비밀번호를 입력하세요</h4>
+      </div>
+      <div class="modal-body">
+      	비밀번호<input type="text" name="password" value="">
+      	<input type="text" name="no" value="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 </body>
 
 <script type="text/javascript">
-<!-- 준비가 끝나면 -->
+<!-- 준비가 끝났을때 -->
 $(document).ready(function(){
 	console.log("jquery로 요청 data만 받는 요청");
 	
@@ -132,7 +159,6 @@ $("#btnSubmit").on("click", function() {
 			
 			/* 1개 데이터 추가하기 */
 			render(gbVo, "up");
-			
 			/* 입력폼 초기화 */
 			$("[name='name']").val("");
 			$("[name='password']").val("");
@@ -144,6 +170,29 @@ $("#btnSubmit").on("click", function() {
 	});
 
 });
+
+$("#listArea").on("click", ".btnDel", function() {
+	console.log("삭제버튼 클릭");
+	var $this = $(this);
+	var no = $this.data("no");
+	
+	//모달창 폼에 no 값 입력
+	$("[name=password]").val("");
+	$("[name=no]").val(no);
+	
+	//모달창 띄우기
+	$("#delModal").modal("show");	
+});
+
+
+/* 테스트 버전을 눌렀을때 */
+$("#btnTest").on("click", function() {
+	console.log("테스트 버튼 클릭");
+	
+	//모달창 띄우기
+	$("#delModal").modal("show");	
+});
+
 
 /* 리스트 요청 */
 function fetchList() {
@@ -162,7 +211,7 @@ function fetchList() {
 			
 			//화면 data + html 그린다
 			for(var i=0; i<guestbookList.length; i++) {
-				render(guestbookList[i], "down");				
+				render(guestbookList[i], "down");
 			}
 		},
 		error : function(XHR, status, error) {
@@ -186,7 +235,7 @@ function render(guestbookVo, opt) {
 	str += '		<td>'+guestbookVo.no+'</td>';
 	str += '		<td>'+guestbookVo.name+'</td>';
 	str += '		<td>'+guestbookVo.regDate+'</td>';
-	str += ' 		<td><a href="">[삭제]</a></td>';
+	str += ' 		<td><button class="btnDel" type="button" data-no="'+guestbookVo.no+'">삭제</button></td>';
 	str += '	</tr>';
 	str += '	<tr>';
 	str += '		<td colspan=4 class="text-left">'+guestbookVo.content+'</td>';

@@ -42,7 +42,6 @@ public class ApiGuestbookController {
 	@RequestMapping(value="/api/guestbook/add", method= {RequestMethod.GET, RequestMethod.POST})
 	public GuestbookVo  add(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookController->add()");
-		
 		return guestbookService.addListAjax(guestbookVo);
 	}
 }
