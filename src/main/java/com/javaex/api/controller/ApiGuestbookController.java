@@ -44,4 +44,13 @@ public class ApiGuestbookController {
 		System.out.println("ApiGuestbookController->add()");
 		return guestbookService.addListAjax(guestbookVo);
 	}
+	
+	
+	//방명록 삭제
+	@ResponseBody
+	@RequestMapping(value="/api/guestbook/remove", method= {RequestMethod.GET, RequestMethod.POST})
+	public String remove(@ModelAttribute GuestbookVo guestbookVo) {
+		System.out.println("ApiGuestbookController->remove()");
+		return guestbookService.gbDelete(guestbookVo);
+	}
 }

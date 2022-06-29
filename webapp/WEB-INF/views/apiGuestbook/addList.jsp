@@ -78,8 +78,6 @@
 						
 					<!-- </form>	 -->
 					
-					<button id="btnTest" class="btn btn-primary" type="button">모달창</button>
-					
 					<div id="listArea">
 					 <!-- guestbookList 출력되는 부분 -->
 					</div>
@@ -111,7 +109,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" id="btnModalDel" class="btn btn-danger">삭제</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -171,19 +169,60 @@ $("#btnSubmit").on("click", function() {
 
 });
 
+//리스트의 삭제버튼을 클릭할때
 $("#listArea").on("click", ".btnDel", function() {
 	console.log("삭제버튼 클릭");
 	var $this = $(this);
 	var no = $this.data("no");
 	
 	//모달창 폼에 no 값 입력
-	$("[name=password]").val("");
-	$("[name=no]").val(no);
+	$("#delModal [name=password]").val(""); //자식 선택
+	$("#delModal [name=no]").val(no);
 	
 	//모달창 띄우기
-	$("#delModal").modal("show");	
+	$("#delModal").modal("show");
 });
 
+/* 모달창 삭제버튼 클릭할때 */
+$("#btnModalDel").on("click", function() {
+	console.log("모달 삭제 버튼 클릭");
+	
+	//데이터 모으기
+	var password = $("#delModal [name=password]").val();
+	var no = $("[name=no]").val();
+	
+	var guestbookVo = {
+		password: password,
+		no: no
+	};
+	
+	//서버로 데이터 전송
+	$.ajax({
+		url : "${pageContext.request.contextPath }/api/guestbook/remove",
+		type : "post",
+		data : guestbookVo,
+		//dataType : "json",
+		success : function(result){
+			/*성공시 처리해야될 코드 작성*/
+			console.log(result);
+			
+			if(result == "success") {
+				$("#t"+no).remove();
+			} else {
+				alert("비밀번호를 확인하세요.");
+			}
+			
+			$("#delModal").modal("hide");
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	
+	//리스트에서 제거하기
+	
+	//모달창 닫기
+});
 
 /* 테스트 버전을 눌렀을때 */
 $("#btnTest").on("click", function() {
@@ -224,7 +263,7 @@ function fetchList() {
 function render(guestbookVo, opt) {
 	console.log("render()");
 	var str = "";
-	str += '<table class="guestRead">';
+	str += '<table id="t'+guestbookVo.no+'" class="guestRead">';
 	str += '	<colgroup>';
 	str += '		<col style="width: 10%;">';
 	str += '		<col style="width: 40%;">';

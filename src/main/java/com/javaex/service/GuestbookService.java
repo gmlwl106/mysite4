@@ -15,9 +15,18 @@ public class GuestbookService {
 	GuestbookDao gbDao;
 	
 	//방명록 삭제
-	public int gbDelete(GuestbookVo gbVo) {
+	public String gbDelete(GuestbookVo gbVo) {
 		//System.out.println("gbService->gbDelete()");
-		return gbDao.gbDelete(gbVo);
+		int count = gbDao.gbDelete(gbVo);
+		String state;
+		
+		if(count > 0) {
+			state = "success";
+		} else {
+			state = "fail";
+		}
+		
+		return state;
 	}
 
 	//방명록 추가
