@@ -129,6 +129,7 @@ $(document).ready(function(){
 });
 
 /* 저장 버튼 클릭했을 때 */
+/*
 $("#btnSubmit").on("click", function() {
 	console.log("저장버튼 클릭");
 	
@@ -153,14 +154,47 @@ $("#btnSubmit").on("click", function() {
 		data : guestbookVo,
 		dataType : "json",
 		success : function(gbVo){
-			/*성공시 처리해야될 코드 작성*/
+			//성공시 처리해야될 코드 작성
 			
-			/* 1개 데이터 추가하기 */
+			// 1개 데이터 추가하기
 			render(gbVo, "up");
-			/* 입력폼 초기화 */
+			// 입력폼 초기화 
 			$("[name='name']").val("");
 			$("[name='password']").val("");
 			$("[name='content']").val("");
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+});
+*/
+
+/* 저장 버튼 클릭했을 때 jquery로 요청(json) */
+$("#btnSubmit").on("click", function() {
+	console.log("저장버튼 클릭");
+	
+	//데이터 수집
+	var name = $("[name='name']").val();
+	var password = $("[name='password']").val();
+	var content = $("[name='content']").val();
+	
+	//데이터 객체로 묶기
+	var guestbookVo = {
+			name: name,
+			password: password,
+			content: content
+	};
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath }/api/guestbook/add2",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(guestbookVo), //js객체를 JSON문자열로 변경
+		dataType : "json",
+		success : function(gbVo){
+			//성공시 처리해야될 코드 작성
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
