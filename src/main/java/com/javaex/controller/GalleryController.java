@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,9 +30,11 @@ public class GalleryController {
 	
 	//갤러리 폼
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String galleryForm() {
+	public String galleryForm(Model model) {
 		System.out.println("GalleryController->galleryForm()");
 		List<GalleryVo> gList = gService.getGallery();
+		System.out.println(gList);
+		model.addAttribute("gList", gList);
 		return "/gallery/list";
 	}
 }
