@@ -51,7 +51,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="./join" method="get">
+						<form id="join-form" action="./join" method="get">
 	
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -119,7 +119,41 @@
 
 <script type="text/javascript">
 
-	/* 중복체크 */
+	var idCk = 0;
+	
+	//회원가입 버튼
+	$("#join-form").on("submit", function() {
+		
+		var id = $("#input-uid").val();
+		var pw = $("#input-pass").val();
+		var agree = $("#chk-agree").is(":checked");
+		
+		if(id == "" || id == null) {
+			alert("아이디를 입력해주세요.");
+			return false;
+		} else {
+			if(idCk == 0) {
+				alert("아이디 중복 체크를 해주세요.");
+				return false;
+			}
+		}
+		
+		if(pw == "" || pw == null) {
+			alert("비밀번호를 입력해주세요.")
+			return false;
+		}
+		
+		if(agree == false) {
+			alert("약관에 동의해주세요.")
+			return false;
+		}
+		
+		
+		
+	});
+
+	
+	//중복체크
 	$("#idCk").on("click", function() {
 		
 		var id = $("#input-uid").val();
@@ -127,7 +161,7 @@
 		
 		var userVo = {
 				id : id
-		}
+		};
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath }/user/idCheck",
@@ -138,17 +172,21 @@
 			success : function(result){
 				//성공시 처리해야될 코드 작성
 				console.log(result);
-				if(result == "success") {
-					$("#idCkResult").html("사용할 수 있는 아이디입니다.");
-				} else {
-					$("#idCkResult").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+				if(id != null || id != "") {
+					if(result == "success") {
+						$("#idCkResult").html("사용할 수 있는 아이디입니다.");
+						idCk = 1;
+					} else {
+						$("#idCkResult").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+					};
 				}
+
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-	})
+	});
 	
 </script>
 
