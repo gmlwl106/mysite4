@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gallery">
+	<insert id="insert" parameterType="gVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select SEQ_GALLERY_NO.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into gallery
+			values(#{no}, #{userNo}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
+		]]>
+	</insert>
+</mapper>
