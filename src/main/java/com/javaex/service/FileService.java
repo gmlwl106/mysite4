@@ -23,8 +23,8 @@ public class FileService {
 	public String save(MultipartFile file) {
 		System.out.println("FileService->save() file:"+file.getOriginalFilename());
 		
-		String saveDir = "D:\\javaStudy\\upload"; //집
-		//String saveDir = "C:\\javaStudy\\upload"; //학원
+		//String saveDir = "D:\\javaStudy\\upload"; //집
+		String saveDir = "C:\\javaStudy\\upload"; //학원
 		
 		//파일 정보 (DB 저장) 추출 저장
 		//오리지날파일명, 저장경로+파일(랜덤)명, 파일 사이즈 등 관리

@@ -34,12 +34,29 @@ public class UserService {
 		//System.out.println("UserService->join()");
 		return userDao.userInsert(userVo);
 	}
+	
+	//아이디 중복체크 (회원가입)
+	public String idCheck(String id) {
+		//System.out.println("UserService->idCheck()");
+		
+		UserVo userVo = userDao.userIdSearch(id);
+		
+		if(userVo == null) {
+			//중복된게 없을때 성공
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+	}
 
 	//로그인 (회원 가져오기)
 	public UserVo login(UserVo userVo) {
 		//System.out.println("UserService->login()");
 		return userDao.getUser(userVo);
 	}
+
+	
 
 
 }

@@ -12,6 +12,16 @@
 		]]>
 	</insert>
 	
+	<!-- 아이디 찾기 (회원가입 중복체크) -->
+	<select id="idSearch" parameterType="String" resultType="userVo">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}
+		]]>
+	</select>
+	
+	
 	<!-- 회원 가져오기 (로그인) -->
 	<select id="getUser" parameterType="userVo" resultType="userVo">
 		<![CDATA[

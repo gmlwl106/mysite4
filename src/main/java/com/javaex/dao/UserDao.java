@@ -39,4 +39,9 @@ public class UserDao {
 		return sqlSession.insert("user.insert", userVo);
 	}
 
+	public UserVo userIdSearch(String id) {
+		//System.out.println("UserDao->userIdSearch()");
+		return sqlSession.selectOne("user.idSearch", id);
+	}
+
 }

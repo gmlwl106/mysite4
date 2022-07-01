@@ -7,8 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- css -->
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -53,7 +57,8 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="idCk">중복체크</button>
+								<p id="idCkResult"></p>
 							</div>
 	
 							<!-- 비밀번호 -->
@@ -110,5 +115,42 @@
 	<!-- //wrap -->
 
 </body>
+
+
+<script type="text/javascript">
+
+	/* 중복체크 */
+	$("#idCk").on("click", function() {
+		
+		var id = $("#input-uid").val();
+		console.log(id);
+		
+		var userVo = {
+				id : id
+		}
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/user/idCheck",
+			type : "post",
+			//contentType : "application/json",
+			data : userVo,
+			//dataType : "json",
+			success : function(result){
+				//성공시 처리해야될 코드 작성
+				console.log(result);
+				if(result == "success") {
+					$("#idCkResult").html("사용할 수 있는 아이디입니다.");
+				} else {
+					$("#idCkResult").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+</script>
+
 
 </html>

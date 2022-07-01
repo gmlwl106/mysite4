@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -25,7 +26,7 @@ public class UserController {
 	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController->modify()");
 		
-		int count = userService.modify(userVo);
+		userService.modify(userVo);
 		UserVo authUser = new UserVo();
 		authUser.setNo(userVo.getNo());
 		authUser.setName(userVo.getName());
@@ -91,6 +92,14 @@ public class UserController {
 		
 		userService.join(userVo);
 		return "user/joinOk";
+	}
+	
+	//아이디 중복체크 (회원가입)
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method={RequestMethod.GET, RequestMethod.POST})
+	public String idCheck(@ModelAttribute UserVo userVo) {
+		System.out.println("UserController->idCheck()");
+		return userService.idCheck(userVo.getId());
 	}
 	
 	//회원가입폼
