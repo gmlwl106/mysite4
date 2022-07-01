@@ -182,7 +182,7 @@
 				var content = gVo.content;
 				
 				$("#viewModelContent").html(content);
-				$("#viewModelImg").css("src", src);
+				$("#viewModelImg").attr("src", src);
 
 			},
 			error : function(XHR, status, error) {
