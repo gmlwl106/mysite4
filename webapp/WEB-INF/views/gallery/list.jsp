@@ -58,7 +58,7 @@
 						
 						<!-- 이미지반복영역 -->
 						<c:forEach items="${gList }" var="gVo">
-							<li>
+							<li id="li${gVo.no }" data-no="${gVo.no }">
 								<div class="view" >
 									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${gVo.saveName}">
 									<div class="imgWriter">작성자: <strong>${gVo.userName }</strong></div>
@@ -152,12 +152,48 @@
 </body>
 
 <script type="text/javascript">
+	<!-- 준비가 끝났을때 -->
+	$(document).ready(function(){
+		console.log("jquery로 요청 data만 받는 요청");
+	});
 
 	/* 이미지올리기 버튼 클릭 */
 	$("#btnImgUpload").on("click", function() {
 		//모달창 띄우기
 		$("#addModal").modal("show");
 	});
+	
+	/* 이미지 클릭 */
+	$("#viewArea").on("click", "li", function() {
+		var $this = $(this);
+		var no = $this.data("no");
+
+		$.ajax({
+			url : "${pageContext.request.contextPath }/gallery/getImg",
+			type : "get",
+			//contentType : "application/json",
+			data : {no},
+			//dataType : "json",
+			success : function(gVo){
+				//성공시 처리해야될 코드 작성
+				console.log(gVo);
+				
+				var src = "${pageContext.request.contextPath }/upload/"+gVo.saveName;
+				var content = gVo.content;
+				
+				$("#viewModelContent").html(content);
+				$("#viewModelImg").css("src", src);
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
+		$("#viewModal").modal("show");
+	});
+	
+	
 
 
 </script>

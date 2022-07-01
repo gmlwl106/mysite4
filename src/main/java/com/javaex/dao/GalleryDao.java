@@ -16,7 +16,14 @@ public class GalleryDao {
 
 	//갤러리 전체 가져오기
 	public List<GalleryVo> getGallery() {
+		System.out.println("GalleryDao->getGallery()");
 		return sqlSession.selectList("gallery.getGallery");
+	}
+	
+	//이미지 1개 정보 가져오기
+	public GalleryVo getImg(int no) {
+		System.out.println("GalleryDao->getImg()");
+		return sqlSession.selectOne("gallery.getImg", no);
 	}
 	
 	//파일정보 저장

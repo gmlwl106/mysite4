@@ -7,10 +7,24 @@
 	<select id="getGallery" resultType="gVo">
 		<![CDATA[
 			select g.no
+					,g.user_no userNo
 			        ,u.name userName
 			        ,saveName
 			from gallery g, users u
 			where g.user_no = u.no
+		]]>
+	</select>
+	
+	<!-- 이미지 1개 정보 가져오기 -->
+	<select id="getImg" parameterType="int" resultType="gVo">
+		<![CDATA[
+			select g.no
+					,g.user_no userNo
+			        ,content
+			        ,saveName
+			from gallery g, users u
+			where g.user_no = u.no
+			and g.no = #{no}
 		]]>
 	</select>
 

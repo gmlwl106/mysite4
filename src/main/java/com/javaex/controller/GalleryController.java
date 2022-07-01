@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.GalleryService;
 import com.javaex.vo.GalleryVo;
@@ -18,6 +20,15 @@ public class GalleryController {
 	
 	@Autowired
 	GalleryService gService;
+	
+	//이미지 1개 정보 가져오기
+	@ResponseBody
+	@RequestMapping(value="/getImg", method= {RequestMethod.GET, RequestMethod.POST})
+	public GalleryVo getImg(@RequestParam("no") int no) {
+		System.out.println("GalleryController->getImg()");
+		System.out.println(no);
+		return gService.getImg(no);
+	}
 
 	//이미지 등록
 	@RequestMapping(value="/upload", method= {RequestMethod.GET, RequestMethod.POST})
@@ -33,7 +44,6 @@ public class GalleryController {
 	public String galleryForm(Model model) {
 		System.out.println("GalleryController->galleryForm()");
 		List<GalleryVo> gList = gService.getGallery();
-		System.out.println(gList);
 		model.addAttribute("gList", gList);
 		return "/gallery/list";
 	}

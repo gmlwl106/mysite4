@@ -23,6 +23,12 @@ public class GalleryService {
 		System.out.println("GalleryService->getGallery()");
 		return gDao.getGallery();
 	}
+	
+	//이미지 1개 정보 가져오기
+	public GalleryVo getImg(int no) {
+		System.out.println("GalleryService->getImg()");
+		return gDao.getImg(no);
+	}
 
 	//파일 정보 추출 저장
 	public void imgUpload(GalleryVo gVo) {
