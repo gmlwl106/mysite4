@@ -135,14 +135,11 @@
 					</div>
 					
 				</div>
-				<form method="" action="">
-					<div class="modal-footer">
+				<div class="modal-footer">
+					<input type="text" id="galleryNo" name="no" value="">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 				</div>
-				
-				
-				</form>
 				
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -157,11 +154,13 @@
 		console.log("jquery로 요청 data만 받는 요청");
 	});
 
+	
 	/* 이미지올리기 버튼 클릭 */
 	$("#btnImgUpload").on("click", function() {
 		//모달창 띄우기
 		$("#addModal").modal("show");
 	});
+	
 	
 	/* 이미지 클릭 */
 	$("#viewArea").on("click", "li", function() {
@@ -170,7 +169,7 @@
 
 		$.ajax({
 			url : "${pageContext.request.contextPath }/gallery/getImg",
-			type : "get",
+			type : "post",
 			//contentType : "application/json",
 			data : {no},
 			//dataType : "json",
@@ -180,9 +179,22 @@
 				
 				var src = "${pageContext.request.contextPath }/upload/"+gVo.saveName;
 				var content = gVo.content;
+				var userNo = gVo.userNo;
+				var authUser = ${authUser.no};
+				console.log(authUser);
+				
+				$("[name=no]").val(gVo.no);
 				
 				$("#viewModelContent").html(content);
 				$("#viewModelImg").attr("src", src);
+				
+				if(userNo == ${authUser.no}) {
+					//작성자가 클릭했을 경우
+					$("#btnDel").show();
+				} else {
+					//작성자가 아닌 사람이 클릭했을 경우
+					$("#btnDel").hide();
+				}
 
 			},
 			error : function(XHR, status, error) {
@@ -194,7 +206,33 @@
 	});
 	
 	
-
+	/* 삭제버튼 클릭했을때 */
+	$("#btnDel").on("click", function() {
+		var no = $("#galleryNo").val();
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath }/gallery/delete",
+			type : "get",
+			//contentType : "application/json",
+			data : {no},
+			//dataType : "json",
+			success : function(result){
+				//성공시 처리해야될 코드 작성
+				console.log(result);
+				
+				if(result == "success") {
+					$("#li"+no).remove();
+				}
+				
+				$("#viewModal").modal("hide");
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+	});
 
 </script>
 

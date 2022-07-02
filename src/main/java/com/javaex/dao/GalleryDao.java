@@ -13,6 +13,7 @@ public class GalleryDao {
 	
 	@Autowired
 	SqlSession sqlSession;
+	
 
 	//갤러리 전체 가져오기
 	public List<GalleryVo> getGallery() {
@@ -30,5 +31,11 @@ public class GalleryDao {
 	public int fileInsert(GalleryVo gVo) {
 		System.out.println("GalleryDao->fileInsert()");
 		return sqlSession.insert("gallery.insert", gVo);
+	}
+	
+	//이미지 삭제
+	public int galleryDelete(int no) {
+		System.out.println("GalleryDao->galleryDelete()");
+		return sqlSession.delete("gallery.delete", no);
 	}
 }

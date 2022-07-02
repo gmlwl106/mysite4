@@ -21,12 +21,19 @@ public class GalleryController {
 	@Autowired
 	GalleryService gService;
 	
+	//이미지 삭제
+	@ResponseBody
+	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String galleryRemove(@RequestParam("no") int no) {
+		System.out.println("GalleryController->galleryRemove()");
+		return gService.galleryRemove(no);
+	}
+	
 	//이미지 1개 정보 가져오기
 	@ResponseBody
 	@RequestMapping(value="/getImg", method= {RequestMethod.GET, RequestMethod.POST})
 	public GalleryVo getImg(@RequestParam("no") int no) {
 		System.out.println("GalleryController->getImg()");
-		System.out.println(no);
 		return gService.getImg(no);
 	}
 

@@ -18,6 +18,8 @@ public class GalleryService {
 	@Autowired
 	GalleryDao gDao;
 	
+	
+	
 	//갤러리 전체 가져오기
 	public List<GalleryVo> getGallery() {
 		System.out.println("GalleryService->getGallery()");
@@ -34,8 +36,8 @@ public class GalleryService {
 	public void imgUpload(GalleryVo gVo) {
 		System.out.println("GalleryService->imgUpload()");
 		
-		//String saveDir = "D:\\javaStudy\\upload"; //집
-		String saveDir = "C:\\javaStudy\\upload"; //학원
+		String saveDir = "D:\\javaStudy\\upload"; //집
+		//String saveDir = "C:\\javaStudy\\upload"; //학원
 		
 		//오리지날파일명
 		String orgName = gVo.getFile().getOriginalFilename();
@@ -71,6 +73,18 @@ public class GalleryService {
 			bos.close();
 		} catch (Exception e) {
 			// TODO: handle exception
+		}
+	}
+	
+	//이미지 삭제
+	public String galleryRemove(int no) {
+		System.out.println("GalleryService->galleryRemove()");
+		int count = gDao.galleryDelete(no);
+		
+		if(count > 0) {
+			return "success";
+		} else {
+			return "fail";
 		}
 	}
 }
