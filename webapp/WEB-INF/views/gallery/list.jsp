@@ -180,8 +180,8 @@
 				var src = "${pageContext.request.contextPath }/upload/"+gVo.saveName;
 				var content = gVo.content;
 				var userNo = gVo.userNo;
-				var authUser = ${authUser.no};
-				console.log(authUser);
+				
+				
 				
 				$("[name=no]").val(gVo.no);
 				
@@ -195,6 +195,8 @@
 					//작성자가 아닌 사람이 클릭했을 경우
 					$("#btnDel").hide();
 				}
+				
+				
 
 			},
 			error : function(XHR, status, error) {

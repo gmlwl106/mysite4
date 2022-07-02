@@ -22,7 +22,7 @@ public class GalleryService {
 	
 	//갤러리 전체 가져오기
 	public List<GalleryVo> getGallery() {
-		System.out.println("GalleryService->getGallery()");
+		//System.out.println("GalleryService->getGallery()");
 		return gDao.getGallery();
 	}
 	

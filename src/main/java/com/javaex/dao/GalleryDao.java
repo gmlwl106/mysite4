@@ -17,7 +17,7 @@ public class GalleryDao {
 
 	//갤러리 전체 가져오기
 	public List<GalleryVo> getGallery() {
-		System.out.println("GalleryDao->getGallery()");
+		//System.out.println("GalleryDao->getGallery()");
 		return sqlSession.selectList("gallery.getGallery");
 	}
 	
