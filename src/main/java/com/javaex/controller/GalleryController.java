@@ -32,7 +32,7 @@ public class GalleryController {
 	//이미지 1개 정보 가져오기
 	@ResponseBody
 	@RequestMapping(value="/getImg", method= {RequestMethod.GET, RequestMethod.POST})
-	public GalleryVo getImg(@RequestParam("no") int no) {
+	public GalleryVo getImg(Model model, @RequestParam("no") int no) {
 		System.out.println("GalleryController->getImg()");
 		return gService.getImg(no);
 	}

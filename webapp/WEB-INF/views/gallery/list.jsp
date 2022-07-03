@@ -139,6 +139,7 @@
 					<input type="text" id="galleryNo" name="no" value="">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
+					
 				</div>
 				
 			</div><!-- /.modal-content -->
@@ -187,7 +188,7 @@
 				
 				$("#viewModelContent").html(content);
 				$("#viewModelImg").attr("src", src);
-				
+				/*
 				if(userNo == ${authUser.no}) {
 					//작성자가 클릭했을 경우
 					$("#btnDel").show();
@@ -195,7 +196,7 @@
 					//작성자가 아닌 사람이 클릭했을 경우
 					$("#btnDel").hide();
 				}
-				
+				*/
 				
 
 			},
