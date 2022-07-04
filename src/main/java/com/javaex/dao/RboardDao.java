@@ -18,4 +18,14 @@ public class RboardDao {
 	public List<RboardVo> getList() {
 		return sqlSession.selectList("rboard.getList");
 	}
+	
+	//게시판 글 가져오기
+	public RboardVo getBoard(int no) {
+		return sqlSession.selectOne("rboard.getBoard", no);
+	}
+	
+	//글 조회수 올리기
+	public int hitUpdate(int no) {
+		return sqlSession.update("rboard.hitUpdate", no);
+	}
 }

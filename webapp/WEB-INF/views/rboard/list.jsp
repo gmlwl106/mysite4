@@ -64,7 +64,7 @@
 								<c:forEach items="${rbList }" var="rbVo">
 									<tr>
 										<td>${rbVo.no }</td>
-										<td class="text-left"><a href="#">${rbVo.title }</a></td>
+										<td class="text-left"><a href="./read/${rbVo.no }">${rbVo.title }</a></td>
 										<td>${rbVo.name }</td>
 										<td>${rbVo.hit }</td>
 										<td>${rbVo.regDate }</td>

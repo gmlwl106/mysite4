@@ -18,4 +18,12 @@ public class RboardService {
 	public List<RboardVo> getList() {
 		return rboardDao.getList();
 	}
+	
+	
+	//게시판 글 읽기
+	public RboardVo read(int no) {
+		//조회수 올리기
+		rboardDao.hitUpdate(no);
+		return rboardDao.getBoard(no);
+	}
 }
