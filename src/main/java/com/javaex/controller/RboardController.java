@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.RboardService;
 import com.javaex.vo.RboardVo;
@@ -22,12 +23,18 @@ public class RboardController {
 	
 
 	//게시판 리스트 폼
-	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/listForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String listForm(Model model) {
 		System.out.println("RboardController->listForm()");
-		List<RboardVo> rbList = rboardService.getList();
-		model.addAttribute("rbList", rbList);
 		return "rboard/list";
+	}
+	
+	//게시판 리스트 가져오기
+	@ResponseBody
+	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
+	public List<RboardVo> list() {
+		System.out.println("RboardController->list()");
+		return rboardService.getList();
 	}
 	
 	
@@ -55,6 +62,6 @@ public class RboardController {
 	public String comment(@ModelAttribute RboardVo rbVo) {
 		System.out.println("RboardController->comment()");
 		rboardService.comment(rbVo);
-		return "redirect:list";
+		return "redirect:listForm";
 	}
 }

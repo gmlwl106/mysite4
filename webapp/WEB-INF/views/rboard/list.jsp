@@ -62,8 +62,8 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach items="${rbList }" var="rbVo">
+							<tbody id="tbody">
+								<%-- <c:forEach items="${rbList }" var="rbVo">
 									<tr>
 										<td>${rbVo.no }</td>
 										<td class="text-left"><a href="./read/${rbVo.no }">${rbVo.title }</a></td>
@@ -75,7 +75,7 @@
 										<td>${rbVo.depth }</td>
 										<td><a href="">[삭제]</a></td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 							</tbody>
 						</table>
 			
@@ -122,7 +122,63 @@
 <!-- 준비가 끝났을때 -->
 $(document).ready(function(){
 	console.log("jquery로 요청 data만 받는 요청");
+	
+	/* 리스트 요청하고 그리기 */
+	fetchList();
 });
+
+/* 리스트 요청 */
+function fetchList() {
+	$.ajax({
+		//보낼때
+		url : "${pageContext.request.contextPath }/rboard/list",
+		type : "post",
+		//contentType : "application/json",
+		//data : {name: ”홍길동"},
+		
+		//받을때
+		dataType : "json",
+		success : function(rbList){
+			//성공시 처리해야될 코드 작성
+			console.log(rbList);
+			
+			//화면 data + html 그린다
+			for(var i=0; i<rbList.length; i++) {
+				render(rbList[i]);
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+};
+
+/* 리스트 1개씩 그리기 */
+function render(rbVo) {
+	console.log("render()");
+	var str = "";
+	str += '<tr>';
+	str += '	<td>'+rbVo.no+'</td>';
+	str += '	<td class="text-left"><a href="./read/'+rbVo.no+'">';
+	if(rbVo.depth > 0) {
+		for(var i=0; i <= rbVo.depth; i++) {
+			str += '&nbsp;&nbsp;';
+		}
+		str += '▶';
+	}
+	str += rbVo.title+'</a></td>';
+	str += '	<td>'+rbVo.name+'</td>';
+	str += '	<td>'+rbVo.hit+'</td>';
+	str += '	<td>'+rbVo.regDate+'</td>';
+	str += '	<td>'+rbVo.groupNo+'</td>';
+	str += '	<td>'+rbVo.orderNo+'</td>';
+	str += '	<td>'+rbVo.depth+'</td>';
+	str += '	<td><a href="">[삭제]</a></td>';
+	str += '</tr>';
+	console.log(str);
+	$("#tbody").append(str);
+
+};
 
 
 </script>
