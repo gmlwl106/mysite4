@@ -16,7 +16,7 @@ import com.javaex.vo.GalleryVo;
 public class GalleryService {
 	
 	@Autowired
-	GalleryDao gDao;
+	private GalleryDao gDao;
 	
 	
 	

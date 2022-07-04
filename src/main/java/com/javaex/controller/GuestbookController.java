@@ -18,7 +18,7 @@ import com.javaex.vo.GuestbookVo;
 public class GuestbookController {
 	
 	@Autowired
-	GuestbookService gbService;
+	private GuestbookService gbService;
 	
 	//방명록 삭제
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})

@@ -12,7 +12,7 @@ import com.javaex.vo.GuestbookVo;
 public class GuestbookService {
 	
 	@Autowired
-	GuestbookDao gbDao;
+	private GuestbookDao gbDao;
 	
 	//방명록 삭제
 	public String gbDelete(GuestbookVo gbVo) {

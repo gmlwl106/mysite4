@@ -19,7 +19,7 @@ import com.javaex.vo.GalleryVo;
 public class GalleryController {
 	
 	@Autowired
-	GalleryService gService;
+	private GalleryService gService;
 	
 	//이미지 삭제
 	@ResponseBody
