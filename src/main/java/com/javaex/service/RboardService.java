@@ -26,4 +26,33 @@ public class RboardService {
 		rboardDao.hitUpdate(no);
 		return rboardDao.getBoard(no);
 	}
+	
+	
+	//댓글 작성하기
+	public int comment(RboardVo rbVo) {
+		
+		//가져온 값 변수에 저장
+		int no = rbVo.getNo();
+		int userNo = rbVo.getUserNo();
+		String title = rbVo.getTitle();
+		String content = rbVo.getContent().replace("<br>", "\r\n");
+		
+		//같은 그룹글 orderNo +1
+		rboardDao.cmtGroupUpdate(no);
+		
+		//댓글 설정 가져오기
+		rbVo = rboardDao.getCmtSetting(no);
+		rbVo.setUserNo(userNo);
+		rbVo.setTitle(title);
+		rbVo.setContent(content);
+		System.out.println(rbVo);
+		
+		
+		
+		//댓글 등록
+		rboardDao.cmtInsert(rbVo);
+		
+		
+		return 0;
+	}
 }

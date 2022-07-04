@@ -17,7 +17,7 @@
 			        ,depth
 			from rboard rb, users u
 			where rb.user_no = u.no
-			order by no desc
+			order by group_no desc, order_no asc
 		]]>
 	</select>
 	
@@ -48,5 +48,35 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	
+	<!-- 같은 그룹글 orderNo +1 -->
+	<update id="cmtGroupUpdate" parameterType="int">
+		<![CDATA[
+			update rboard
+			set order_no = order_no+1
+			where group_no = #{no}
+			and order_no > 1
+		]]>
+	</update>
+	
+	<!-- 댓글 설정 가져오기 -->
+	<select id="getSetting" parameterType="int" resultType="rbVo">
+		<![CDATA[
+			select  group_no groupNo
+			        ,order_no+1 orderNo
+			        ,depth+1 depth
+			from rboard
+			where no = #{no}
+		]]>
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="cmtInsert" parameterType="rbVo">
+		<![CDATA[
+			insert into rboard
+			values(seq_rboard_no.nextval, #{userNo}, #{title}, #{content}, 0, sysdate, #{groupNo}, #{orderNo}, #{depth})
+		]]>
+	</insert>
 	
 </mapper>

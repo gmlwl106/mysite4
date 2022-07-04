@@ -10,6 +10,8 @@
 <link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+
 </head>
 
 
@@ -115,5 +117,14 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+<!-- 준비가 끝났을때 -->
+$(document).ready(function(){
+	console.log("jquery로 요청 data만 받는 요청");
+});
+
+
+</script>
 
 </html>

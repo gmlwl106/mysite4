@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,9 +41,20 @@ public class RboardController {
 	}
 	
 	
-	//댓글 달기
-	public String comment() {
-		
-		return "";
+	//댓글 달기 폼
+	@RequestMapping(value="/commentWriteForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String commentWriteForm(Model model, @PathVariable int no) {
+		System.out.println("RboardController->commentWriteForm()");
+		model.addAttribute(no);
+		return "rboard/writeForm";
+	}
+	
+	
+	//댓글 추가
+	@RequestMapping(value="/comment", method= {RequestMethod.GET, RequestMethod.POST})
+	public String comment(@ModelAttribute RboardVo rbVo) {
+		System.out.println("RboardController->comment()");
+		rboardService.comment(rbVo);
+		return "redirect:list";
 	}
 }

@@ -59,18 +59,17 @@
 								<span class="form-value">${rbVo.regDate }</span>
 							</div>
 							
+							<!-- 확인용 나중에 빼기 -->
 							<!-- groupNo -->
 							<div class="form-group">
 								<span class="form-text">groupNo</span>
 								<span class="form-value">${rbVo.groupNo }</span>
 							</div>
-							
 							<!-- orderNo -->
 							<div class="form-group">
 								<span class="form-text">orderNo</span>
 								<span class="form-value">${rbVo.orderNo }</span>
 							</div>
-							
 							<!-- depth -->
 							<div class="form-group">
 								<span class="form-text">depth</span>
@@ -94,9 +93,9 @@
 								<a id="btn_modify" href="">수정</a>
 							</c:if>
 							<c:if test="${not empty authUser }">
-								<a href="${pageContext.request.contextPath }/rboard/comment/${rbVo.no}">댓글달기</a>
+								<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/commentWriteForm/${rbVo.no}">댓글달기</a>
 							</c:if>
-							<a href="${pageContext.request.contextPath }/rboard/list">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/list">목록</a>
 							
 						</form>
 						<!-- //form -->
