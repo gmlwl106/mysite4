@@ -188,15 +188,15 @@
 				
 				$("#viewModelContent").html(content);
 				$("#viewModelImg").attr("src", src);
-				/*
-				if(userNo == ${authUser.no}) {
+				
+				if(userNo == "${authUser.no}") {
 					//작성자가 클릭했을 경우
 					$("#btnDel").show();
 				} else {
 					//작성자가 아닌 사람이 클릭했을 경우
 					$("#btnDel").hide();
 				}
-				*/
+				
 				
 
 			},

@@ -36,8 +36,8 @@ public class GalleryService {
 	public void imgUpload(GalleryVo gVo) {
 		System.out.println("GalleryService->imgUpload()");
 		
-		String saveDir = "D:\\javaStudy\\upload"; //집
-		//String saveDir = "C:\\javaStudy\\upload"; //학원
+		//String saveDir = "D:\\javaStudy\\upload"; //집
+		String saveDir = "C:\\javaStudy\\upload"; //학원
 		
 		//오리지날파일명
 		String orgName = gVo.getFile().getOriginalFilename();
