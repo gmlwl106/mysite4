@@ -24,6 +24,11 @@ public class RboardDao {
 		return sqlSession.selectOne("rboard.getBoard", no);
 	}
 	
+	//게시판 글 등록
+	public int boardInsert(RboardVo rbVo) {
+		return sqlSession.insert("rboard.insert", rbVo);
+	}
+	
 	//글 조회수 올리기
 	public int hitUpdate(int no) {
 		return sqlSession.update("rboard.hitUpdate", no);

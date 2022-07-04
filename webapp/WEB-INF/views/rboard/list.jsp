@@ -98,7 +98,9 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+						<c:if test="${not empty authUser }">
+							<a id="btn_write" href="./writeForm">글쓰기</a>
+						</c:if>
 					
 					</div>
 					<!-- //list -->
@@ -162,7 +164,7 @@ function render(rbVo) {
 	str += '	<td class="text-left"><a href="./read/'+rbVo.no+'">';
 	if(rbVo.depth > 0) {
 		for(var i=0; i <= rbVo.depth; i++) {
-			str += '&nbsp;&nbsp;';
+			str += '&ensp;&ensp;';
 		}
 		str += '▶';
 	}
@@ -173,7 +175,9 @@ function render(rbVo) {
 	str += '	<td>'+rbVo.groupNo+'</td>';
 	str += '	<td>'+rbVo.orderNo+'</td>';
 	str += '	<td>'+rbVo.depth+'</td>';
-	str += '	<td><a href="">[삭제]</a></td>';
+	if("${authUser.no}" == rbVo.userNo) {
+		str += '	<td><a href="">[삭제]</a></td>';
+	}
 	str += '</tr>';
 	console.log(str);
 	$("#tbody").append(str);

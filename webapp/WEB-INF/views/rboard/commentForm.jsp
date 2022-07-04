@@ -26,7 +26,7 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>게시글 쓰기</h3>
+					<h3>댓글 쓰기</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
@@ -40,8 +40,13 @@
 	
 				<div id="board">
 					<div id="writeForm">
-						<form action="./write" method="get">
-							<input type="hidden" name="userNo" value="${authUser.no }">
+						<form action="${pageContext.request.contextPath }/rboard/cmtWrite" method="get">
+							<!-- 원글 번호 -->
+							<input type="text" name="no" value="${no }">
+							
+							<!-- 글작성자 번호 -->
+							<input type="text" name="userNo" value="${authUser.no }">
+							
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>

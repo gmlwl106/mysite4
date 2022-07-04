@@ -28,8 +28,14 @@ public class RboardService {
 	}
 	
 	
+	//게시글 작성하기
+	public int write(RboardVo rbVo) {
+		return rboardDao.boardInsert(rbVo);
+	}
+	
+	
 	//댓글 작성하기
-	public int comment(RboardVo rbVo) {
+	public int cmtWrite(RboardVo rbVo) {
 		
 		//가져온 값 변수에 저장
 		int no = rbVo.getNo();

@@ -93,9 +93,9 @@
 								<a id="btn_modify" href="">수정</a>
 							</c:if>
 							<c:if test="${not empty authUser }">
-								<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/commentWriteForm/${rbVo.no}">댓글달기</a>
+								<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/commentForm/${rbVo.no}">댓글달기</a>
 							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/list">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath }/rboard/listForm">목록</a>
 							
 						</form>
 						<!-- //form -->

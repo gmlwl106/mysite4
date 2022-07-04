@@ -49,6 +49,17 @@
 		]]>
 	</update>
 	
+	<!-- 게시글 등록 -->
+	<insert id="insert" parameterType="rbVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_rboard_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into rboard
+			values(#{no}, #{userNo}, #{title}, #{content}, 0, sysdate, #{no}, 1, 0)
+		]]>
+	</insert>
+	
 	
 	<!-- 같은 그룹글 orderNo +1 -->
 	<update id="cmtGroupUpdate" parameterType="int">

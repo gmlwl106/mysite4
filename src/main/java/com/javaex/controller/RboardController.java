@@ -47,21 +47,36 @@ public class RboardController {
 		return "rboard/read";
 	}
 	
-	
-	//댓글 달기 폼
-	@RequestMapping(value="/commentWriteForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
-	public String commentWriteForm(Model model, @PathVariable int no) {
-		System.out.println("RboardController->commentWriteForm()");
-		model.addAttribute(no);
+	//게시글 작성 폼
+	@RequestMapping(value="/writeForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		System.out.println("RboardController->writeForm()");
 		return "rboard/writeForm";
 	}
 	
+	//게시글 작성
+	@RequestMapping(value="/write", method= {RequestMethod.GET, RequestMethod.POST})
+	public String write(@ModelAttribute RboardVo rbVo) {
+		System.out.println("RboardController->write()");
+		rboardService.write(rbVo);
+		return "redirect:listForm";
+	}
 	
-	//댓글 추가
-	@RequestMapping(value="/comment", method= {RequestMethod.GET, RequestMethod.POST})
-	public String comment(@ModelAttribute RboardVo rbVo) {
-		System.out.println("RboardController->comment()");
-		rboardService.comment(rbVo);
+	
+	//댓글 작성 폼
+	@RequestMapping(value="/commentForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+	public String commentForm(Model model, @PathVariable int no) {
+		System.out.println("RboardController->commentForm()");
+		model.addAttribute(no);
+		return "rboard/commentForm";
+	}
+	
+	
+	//댓글 작성
+	@RequestMapping(value="/cmtWrite", method= {RequestMethod.GET, RequestMethod.POST})
+	public String commentWrite(@ModelAttribute RboardVo rbVo) {
+		System.out.println("RboardController->cmtWrite()");
+		rboardService.cmtWrite(rbVo);
 		return "redirect:listForm";
 	}
 }
