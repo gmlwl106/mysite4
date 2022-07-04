@@ -40,9 +40,9 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="./list" method="get">
+						<form action="" method="">
 							<div class="form-group text-right">
-								<input type="text" name="keyword" value="${param.keyword }">
+								<input type="text">
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
@@ -54,23 +54,26 @@
 									<th>글쓴이</th>
 									<th>조회수</th>
 									<th>작성일</th>
+									<th>groupNo</th>
+									<th>orderNo</th>
+									<th>depth</th>
 									<th>관리</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${boardList }" var="boardVo">			
-								<tr>
-									<td>${boardVo.no }</td>
-									<td class="text-left"><a href="./read/${boardVo.no }">${boardVo.title }</a></td>
-									<td>${boardVo.name }</td>
-									<td>${boardVo.hit }</td>
-									<td>${boardVo.regDate }</td>
-									
-									<c:if test="${authUser.no eq boardVo.userNo }">
-										<td><a href="./delete/${boardVo.no }">[삭제]</a></td>
-									</c:if>
-								</tr>
-							</c:forEach>
+								<c:forEach items="${rbList }" var="rbVo">
+									<tr>
+										<td>${rbVo.no }</td>
+										<td class="text-left"><a href="#">${rbVo.title }</a></td>
+										<td>${rbVo.name }</td>
+										<td>${rbVo.hit }</td>
+										<td>${rbVo.regDate }</td>
+										<td>${rbVo.groupNo }</td>
+										<td>${rbVo.orderNo }</td>
+										<td>${rbVo.depth }</td>
+										<td><a href="">[삭제]</a></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 			
@@ -93,9 +96,7 @@
 							
 							<div class="clear"></div>
 						</div>
-						<c:if test="${not empty authUser }">
-							<a id="btn_write" href="./writeForm">글쓰기</a>
-						</c:if>
+						<a id="btn_write" href="">글쓰기</a>
 					
 					</div>
 					<!-- //list -->
