@@ -18,7 +18,7 @@ public class BoardService {
 	
 	
 	//리스트(일반) 페이징
-	public Map<String, Object> getBoardList4(int crtPage) {
+	public Map<String, Object> getBoardList4(int crtPage, String keyword) {
 		System.out.println("BoardService->getBoardList4()");
 		
 		//페이지당 글 갯수
@@ -31,12 +31,13 @@ public class BoardService {
 		int startRnum = (crtPage-1)*listCnt+1; //시작번호
 		int endRnum = (startRnum + listCnt)-1; //끝번호
 		
-		List<BoardVo> boardList = boardDao.selectList4(startRnum, endRnum);
+		List<BoardVo> boardList = boardDao.selectList4(startRnum, endRnum, keyword);
+		System.out.println(boardList);
 		
 		//=======================페이징 계산======================================================
 		
 		//전체글 갯수
-		int totalCnt = boardDao.selectTotalCnt();
+		int totalCnt = boardDao.selectTotalCnt(keyword);
 		
 		//페이지당 버튼 갯수
 		int pageBtnCnt = 5;
@@ -98,12 +99,11 @@ public class BoardService {
 		//System.out.println("BoardService->write()");
 		boardVo.setContent(boardVo.getContent().replace("\r\n","<br>")); //줄바꿈 저장
 		return boardDao.boardInsert(boardVo);
-		/*for(int i=1; i<=127; i++) {
-			boardVo.setTitle("전체게시글 제목입니다");
+		/*for(int i=1; i<=52; i++) {
+			boardVo.setTitle("전체게시글 제목입니다 a");
 			boardVo.setContent("전체 게시글 내용 입니다");
-			boardDao.boardInsert(boardVo);
-		}
-		return 1;*/
+			boardDao.boardInsert(boardVo);*/
+		//return 1;
 		
 	}
 	

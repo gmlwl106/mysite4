@@ -35,16 +35,20 @@
 			       )ort  
 			where rn >= #{startRnum}
 			and rn <= #{endRnum}
+			and ort.title like '%'||#{keyword}||'%'
 		]]>
 	</select>
 	
 	<!-- 글 전체 갯수 -->
-	<select id="selectTotalCnt" resultType="int">
+	<select id="selectTotalCnt" parameterType="String" resultType="int">
 		<![CDATA[
 			select count(*)
 			from board b, users u
 			where b.user_no = u.no
 		]]>
+		<if test="value != null and value != ''">
+			and b.title like '%'||#{keyword}||'%'
+		</if>
 	</select>
 
 	<!-- 글 수정 -->

@@ -40,7 +40,7 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="./list" method="get">
+						<form action="./list4" method="get">
 							<div class="form-group text-right">
 								<input type="text" name="keyword" value="${param.keyword }">
 								<button type="submit" id=btn_search>검색</button>

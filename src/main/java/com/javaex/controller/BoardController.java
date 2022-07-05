@@ -26,9 +26,10 @@ public class BoardController {
 	//리스트(일반) 페이징
 	@RequestMapping(value="/list4", method= {RequestMethod.GET, RequestMethod.POST})
 	public String list4(Model model, 
-						@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage) {
+						@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage,
+						@RequestParam(value="keyword", required=false, defaultValue="") String keyword) {
 		System.out.println("BoardController->list4()");
-		Map<String, Object> boardMap = boardService.getBoardList4(crtPage);
+		Map<String, Object> boardMap = boardService.getBoardList4(crtPage, keyword);
 		model.addAttribute("boardMap", boardMap);
 		return "board/list4";
 	}

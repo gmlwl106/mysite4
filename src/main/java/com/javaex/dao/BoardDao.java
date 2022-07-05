@@ -17,22 +17,23 @@ public class BoardDao {
 	SqlSession sqlSession;
 
 	//리스트(일반) 페이징
-	public List<BoardVo> selectList4(int startRnum, int endRnum) {
+	public List<BoardVo> selectList4(int startRnum, int endRnum, String keyword) {
 		System.out.println("BoardDao->selectList4()");
 		
 		//원래는 서비스에서 하는 부분
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("startRnum", startRnum);
 		map.put("endRnum", endRnum);
+		map.put("keyword", keyword);
 		System.out.println(map);
 		
 		return sqlSession.selectList("board.selectList4", map);
 	}
 	
 	//글 전체 갯수
-	public int selectTotalCnt() {
+	public int selectTotalCnt(String keyword) {
 		System.out.println("BoardDao->getTotalCnt()");
-		return sqlSession.selectOne("board.selectTotalCnt");
+		return sqlSession.selectOne("board.selectTotalCnt", keyword);
 	}
 	
 	//글 수정
