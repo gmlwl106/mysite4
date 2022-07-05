@@ -3,6 +3,50 @@
 
 <mapper namespace="board">
 
+	<!-- 게시판 리스트 가져오기 페이징 -->
+	<select id="selectList4" parameterType="String" resultType="boardVo">
+		<![CDATA[
+			select  ort.rn,
+			        ort.no,
+			        ort.title,
+			        ort.content,
+			        ort.hit,
+			        ort.regDate,
+			        ort.userNo,
+			        ort.userName  
+			from (select rownum rn,
+			             ot.no,
+			             ot.title,
+			             ot.content,
+			             ot.hit,
+			             ot.regDate,
+			             ot.userNo,
+			             ot.userName
+			       from (select b.no,
+			                    b.title,
+			                    b.content,
+			                    b.hit,
+			                    b.reg_date regDate,
+			                    b.user_no userNo,
+			                    u.name userName
+			              from board b, users u
+			              where b.user_no = u.no
+			              order by no desc)ot
+			       )ort  
+			where rn >= #{startRnum}
+			and rn <= #{endRnum}
+		]]>
+	</select>
+	
+	<!-- 글 전체 갯수 -->
+	<select id="selectTotalCnt" resultType="int">
+		<![CDATA[
+			select count(*)
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+	</select>
+
 	<!-- 글 수정 -->
 	<update id="update" parameterType="boardVo">
 		<![CDATA[

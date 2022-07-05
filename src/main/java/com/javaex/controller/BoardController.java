@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,17 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	
+	//리스트(일반) 페이징
+	@RequestMapping(value="/list4", method= {RequestMethod.GET, RequestMethod.POST})
+	public String list4(Model model, 
+						@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage) {
+		System.out.println("BoardController->list4()");
+		Map<String, Object> boardMap = boardService.getBoardList4(crtPage);
+		model.addAttribute("boardMap", boardMap);
+		return "board/list4";
+	}
 	
 
 	//글 수정
