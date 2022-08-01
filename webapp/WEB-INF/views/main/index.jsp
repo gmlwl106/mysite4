@@ -29,23 +29,58 @@
 					<img id="profile-img" src="${pageContext.request.contextPath }/assets/image/profile.jpg">
 					
 					<div id="greetings">
-						<p class="text-xlarge">
-							<span class="bold">안녕하세요!!<br>
-							박깜이의 MySite에 오신 것을 환영합니다.<br>
-							<br>
-							이 사이트는 웹 프로그램밍 실습과제 예제 사이트입니다.<br>
-							</span>
-							<br>
-							사이트 소개, 회원가입, 방명록, 게시판으로 구성되어 있으며<br>
-							jsp&serlvet(모델2) 방식으로 제작되었습니다.<br>
-							<br>
-							자바 수업 + 데이터베이스 수업 + 웹프로그래밍 수업<br>
-							배운 거 있는거 없는 거 다 합쳐서 만들어 놓은 사이트 입니다.<br>
-							<br>
-							(자유롭게 꾸며보세요!!)<br>
-							<br><br>
-							<a class="" href="${pageContext.request.contextPath }/gb/addList">[방명록에 글 남기기]</a>
-						</p>	
+						<!-- [ 영국 런던을 중심으로 구글지도 만들기 ] -->
+						<div id="googleMap" style="width: 100%;height: 700px;"></div>
+						
+						<script>
+						   function myMap(){
+							   	//위치 좌표
+								var myLocation = new google.maps.LatLng(37.481304, 126.952476);
+							   	
+							   	//맵의 중앙 지정
+							   	var map = new google.maps.Map(document.getElementById("googleMap"), {
+							   		zoom: 10,
+							   		center: myLocation
+							   	});
+							   	
+							   	//마커
+							   	var marker = new google.maps.Marker({
+							   		position: myLocation,
+							   		map: map
+							   	});
+							   	
+							   	//마커 정보창
+							   	var infowindow = new google.maps.InfoWindow({
+							   		content: "서울대입구역"
+							   	});
+							   	
+							   	//마커 클릭하면 확대
+							   	marker.addListener("click",function() {
+							   		map.setZoom(18);
+							   		map.setCenter(marker.getPosition());
+							   		infowindow.open(marker.get("map"), marker);
+							   	});
+							   	
+							   	//맵 클릭 이벤트
+							   	google.maps.event.addListener(map, "click", function(event) {
+							   		placeMarker(event.latLng)
+							   	});
+							   	
+							   	//클릭했을때 마커가 찍히게
+							   	function placeMarker(location) {
+							   		new google.maps.Marker({
+							   			position: location,
+							   			map: map
+							   		});
+							   		map.setCenter(location)
+							   	}
+							   	
+							   
+								
+						   }
+						   
+						</script> 
+						<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6MxegCCXt0IWF5C4RAfFRHXcVN0T_RhE&callback=myMap"></script>
 					</div>
 					<!-- //greetings -->
 					
